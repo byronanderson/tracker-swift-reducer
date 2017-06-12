@@ -10,6 +10,7 @@
 		AE29E37E1EEF3613003AC57D /* PTProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE29E3741EEF3613003AC57D /* PTProject.framework */; };
 		AE29E3831EEF3613003AC57D /* PTProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE29E3821EEF3613003AC57D /* PTProjectTests.swift */; };
 		AE29E3851EEF3613003AC57D /* PTProject.h in Headers */ = {isa = PBXBuildFile; fileRef = AE29E3771EEF3613003AC57D /* PTProject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AE29E38F1EEF4450003AC57D /* PTProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE29E38E1EEF4450003AC57D /* PTProject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		AE29E37D1EEF3613003AC57D /* PTProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PTProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE29E3821EEF3613003AC57D /* PTProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTProjectTests.swift; sourceTree = "<group>"; };
 		AE29E3841EEF3613003AC57D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AE29E38E1EEF4450003AC57D /* PTProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTProject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			children = (
 				AE29E3771EEF3613003AC57D /* PTProject.h */,
 				AE29E3781EEF3613003AC57D /* Info.plist */,
+				AE29E38E1EEF4450003AC57D /* PTProject.swift */,
 			);
 			path = PTProject;
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 				TargetAttributes = {
 					AE29E3731EEF3613003AC57D = {
 						CreatedOnToolsVersion = 8.3.3;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					AE29E37C1EEF3613003AC57D = {
@@ -196,6 +200,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE29E38F1EEF4450003AC57D /* PTProject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +327,7 @@
 		AE29E3891EEF3613003AC57D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -333,6 +339,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.pivotaltracker.PTProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -340,6 +347,7 @@
 		AE29E38A1EEF3613003AC57D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -358,6 +366,7 @@
 		AE29E38C1EEF3613003AC57D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = PTProjectTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pivotaltracker.PTProjectTests;
@@ -369,6 +378,7 @@
 		AE29E38D1EEF3613003AC57D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = PTProjectTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pivotaltracker.PTProjectTests;

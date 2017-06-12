@@ -1,0 +1,3 @@
+[submodule "Carthage/Checkouts/persistent.objc"]
+	path = Carthage/Checkouts/persistent.objc
+	url = https://github.com/astashov/persistent.objc.git
