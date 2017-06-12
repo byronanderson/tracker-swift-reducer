@@ -21,9 +21,20 @@ class PTProjectTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        XCTAssert(PTProject.PTProjectIsCool());
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testProjectName() {
+        let before = importFixture(name: "before");
+        let after = importFixture(name: "after");
+        
+        let action = importCommand();
+        
+        XCTAssert(PTProject.reduce(project: before, action: action) == after);
+    }
+    
+    func importFixture(name: String) -> PTProject {
+        return PTProject(name: "foobar");
+    }
+    
+    func importCommand() -> ProjectAction {
+        return ProjectAction();
     }
 }

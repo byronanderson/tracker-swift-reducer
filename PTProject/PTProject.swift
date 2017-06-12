@@ -6,7 +6,14 @@
 //  Copyright © 2017 pivotaltracker. All rights reserved.
 //
 
-func PTProjectIsCool() -> Bool {
-    return true;
+struct PTProject : Equatable {
+    let name: String;
+    
+    static func reduce(project: PTProject, action: ProjectAction) -> PTProject {
+        return project;
+    }
 }
 
+func ==(lhs: PTProject, rhs: PTProject) -> Bool {
+    return lhs.name == rhs.name;
+}

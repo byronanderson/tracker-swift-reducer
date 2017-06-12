@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		AE29E37E1EEF3613003AC57D /* PTProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE29E3741EEF3613003AC57D /* PTProject.framework */; };
 		AE29E3831EEF3613003AC57D /* PTProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE29E3821EEF3613003AC57D /* PTProjectTests.swift */; };
-		AE29E3851EEF3613003AC57D /* PTProject.h in Headers */ = {isa = PBXBuildFile; fileRef = AE29E3771EEF3613003AC57D /* PTProject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AE29E38F1EEF4450003AC57D /* PTProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE29E38E1EEF4450003AC57D /* PTProject.swift */; };
+		AE29E3911EEF482D003AC57D /* ProjectAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE29E3901EEF482D003AC57D /* ProjectAction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,12 +25,12 @@
 
 /* Begin PBXFileReference section */
 		AE29E3741EEF3613003AC57D /* PTProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PTProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		AE29E3771EEF3613003AC57D /* PTProject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PTProject.h; sourceTree = "<group>"; };
 		AE29E3781EEF3613003AC57D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE29E37D1EEF3613003AC57D /* PTProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PTProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE29E3821EEF3613003AC57D /* PTProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTProjectTests.swift; sourceTree = "<group>"; };
 		AE29E3841EEF3613003AC57D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE29E38E1EEF4450003AC57D /* PTProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTProject.swift; sourceTree = "<group>"; };
+		AE29E3901EEF482D003AC57D /* ProjectAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectAction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,9 +73,9 @@
 		AE29E3761EEF3613003AC57D /* PTProject */ = {
 			isa = PBXGroup;
 			children = (
-				AE29E3771EEF3613003AC57D /* PTProject.h */,
 				AE29E3781EEF3613003AC57D /* Info.plist */,
 				AE29E38E1EEF4450003AC57D /* PTProject.swift */,
+				AE29E3901EEF482D003AC57D /* ProjectAction.swift */,
 			);
 			path = PTProject;
 			sourceTree = "<group>";
@@ -96,7 +96,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE29E3851EEF3613003AC57D /* PTProject.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE29E38F1EEF4450003AC57D /* PTProject.swift in Sources */,
+				AE29E3911EEF482D003AC57D /* ProjectAction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +406,7 @@
 				AE29E38A1EEF3613003AC57D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AE29E38B1EEF3613003AC57D /* Build configuration list for PBXNativeTarget "PTProjectTests" */ = {
 			isa = XCConfigurationList;
@@ -414,6 +415,7 @@
 				AE29E38D1EEF3613003AC57D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
