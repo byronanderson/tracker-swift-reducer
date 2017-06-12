@@ -12,7 +12,6 @@
 		AE29E38F1EEF4450003AC57D /* PTProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE29E38E1EEF4450003AC57D /* PTProject.swift */; };
 		AE29E3911EEF482D003AC57D /* ProjectAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE29E3901EEF482D003AC57D /* ProjectAction.swift */; };
 		AE29E3931EEF4E98003AC57D /* fixtures in Resources */ = {isa = PBXBuildFile; fileRef = AE29E3921EEF4E98003AC57D /* fixtures */; };
-		AE29E3951EEF53B1003AC57D /* example.txt in Resources */ = {isa = PBXBuildFile; fileRef = AE29E3941EEF53B1003AC57D /* example.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -196,7 +195,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE29E3931EEF4E98003AC57D /* fixtures in Resources */,
-				AE29E3951EEF53B1003AC57D /* example.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

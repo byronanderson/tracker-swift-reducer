@@ -22,23 +22,35 @@ class PTProjectTests: XCTestCase {
     }
     
     func testProjectName() throws {
-        let before = try importFixture(name: "before");
-        let after = try importFixture(name: "after");
-        
-        let action = importCommand();
-        
-        XCTAssert(PTProject.reduce(project: before, action: action) == after);
+        let theFixtures = try fixtures();
+        for fixture in theFixtures {
+            let action = try importCommand(fixture: fixture)
+            let before = try importFixture(fixture: fixture, name: "before");
+            let after = try importFixture(fixture: fixture, name: "after");
+            XCTAssert(PTProject.reduce(project: before, action: action) == after, fixture);
+        }
     }
     
-    func importFixture(name: String) throws -> PTProject {
-        let data = try readFile(path: "fixtures/ProjectUpdate-83179725/" + name, withExtension: "json");
+    func importFixture(fixture: String, name: String) throws -> PTProject {
+        let data = try readFile(path: "fixtures/" + fixture + "/" + name, withExtension: "json");
         let json = try JSONSerialization.jsonObject(with: data, options: []) as! NSDictionary
         let name = json.object(forKey: "name") as! String
         return PTProject(name: name);
     }
     
-    func importCommand() -> ProjectAction {
-        return ProjectAction();
+    func importCommand(fixture: String) throws -> ProjectAction {
+        let data = try readFile(path: "fixtures/" + fixture + "/command", withExtension: "json");
+        let json = try JSONSerialization.jsonObject(with: data, options: []) as! NSDictionary
+        let commands = json.object(forKey: "stale_commands")! as! [Any]
+        return ProjectAction(data: commands.first!)
+    }
+    
+    func fixtures() throws -> [String] {
+        let testBundle = Bundle(for: type(of: self))
+        return testBundle.paths(forResourcesOfType: nil, inDirectory: "fixtures").map { (directory) -> String in
+            let parts = directory.components(separatedBy: "/")
+            return parts.last!
+        };
     }
     
     func readFile(path: String, withExtension: String) throws -> Data {

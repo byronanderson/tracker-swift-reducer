@@ -9,5 +9,5 @@
 import Foundation
 
 struct ProjectAction {
-    
+    let data : Any;
 }
