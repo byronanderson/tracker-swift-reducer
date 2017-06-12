@@ -31,18 +31,20 @@ class PTProjectTests: XCTestCase {
     }
     
     func importFixture(name: String) throws -> PTProject {
-        print(try readFile(path: "fixtures/ProjectUpdate-83179725/" + name, withExtension: "json"));
-        return PTProject(name: "foobar");
+        let data = try readFile(path: "fixtures/ProjectUpdate-83179725/" + name, withExtension: "json");
+        let json = try JSONSerialization.jsonObject(with: data, options: []) as! NSDictionary
+        let name = json.object(forKey: "name") as! String
+        return PTProject(name: name);
     }
     
     func importCommand() -> ProjectAction {
         return ProjectAction();
     }
     
-    func readFile(path: String, withExtension: String) throws -> String {
+    func readFile(path: String, withExtension: String) throws -> Data {
         let testBundle = Bundle(for: type(of: self))
         let url = testBundle.url(forResource: path, withExtension: withExtension)!
-        let text = try String(contentsOf: url)
+        let text = try NSData(contentsOf: url) as Data
 
         return text
     }
