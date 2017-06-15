@@ -13,13 +13,15 @@ struct PTProject {
     let labels : Labels
     let epics : Epics
     let epicIds : EpicIds
+    let stories : Stories
     
     static func reduce(project: PTProject, action: ProjectAction) -> PTProject {
         return PTProject(
             metadata: ProjectMetadata.reduce(project: project.metadata, action: action),
             labels: Labels.reduce(labels: project.labels, action: action),
             epics: Epics.reduce(epics: project.epics, action: action),
-            epicIds: EpicIds.reduce(epicIds: project.epicIds, action: action)
+            epicIds: EpicIds.reduce(epicIds: project.epicIds, action: action),
+            stories: Stories.reduce(stories: project.stories, action: action)
         );
     }
     
@@ -28,36 +30,37 @@ struct PTProject {
             metadata: ProjectMetadata.fromJSON(json: json),
             labels: Labels.fromJSON(json: json),
             epics: Epics.fromJSON(json: json),
-            epicIds: EpicIds.fromJSON(json: json)
+            epicIds: EpicIds.fromJSON(json: json),
+            stories: Stories.fromJSON(json: json)
         );
     }
     
     static func projectName(project: PTProject) -> String {
-        return ProjectMetadata.projectName(project: project.metadata);
+        return ProjectMetadata.projectName(project: project.metadata)
     }
     
     static func iterationLength(project: PTProject) -> Int {
-        return ProjectMetadata.iterationLength(project: project.metadata);
+        return ProjectMetadata.iterationLength(project: project.metadata)
     }
     
     static func startTime(project: PTProject) -> Int64 {
-        return ProjectMetadata.startTime(project: project.metadata);
+        return ProjectMetadata.startTime(project: project.metadata)
     }
     
     static func estimateBugsAndChores(project: PTProject) -> Bool {
-        return ProjectMetadata.estimateBugsAndChores(project: project.metadata);
+        return ProjectMetadata.estimateBugsAndChores(project: project.metadata)
     }
     
     static func timezone(project: PTProject) -> String {
-        return ProjectMetadata.timezone(project: project.metadata);
+        return ProjectMetadata.timezone(project: project.metadata)
     }
     
     static func pointScale(project: PTProject) -> [Int] {
-        return ProjectMetadata.pointScale(project: project.metadata);
+        return ProjectMetadata.pointScale(project: project.metadata)
     }
     
     static func labels(project: PTProject) -> Set<Label> {
-        return Labels.labels(labels: project.labels);
+        return Labels.labels(labels: project.labels)
     }
     
     static func epics(project: PTProject) -> [Epic] {
@@ -65,5 +68,9 @@ struct PTProject {
         return EpicIds.epicIds(epicIds: project.epicIds).map({ (id) -> Epic in
             return epicsById[id]!
         })
+    }
+    
+    static func storiesById(project: PTProject) -> [Int64 : Story] {
+        return Stories.storiesById(stories: project.stories)
     }
 }

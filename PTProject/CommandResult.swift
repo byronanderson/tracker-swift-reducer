@@ -22,4 +22,7 @@ struct CommandResult {
     let label_id : Int64?
     let after_id : Int64?
     let before_id : Int64?
+    let estimate : Int?
+    let current_state : String?
+    let story_type : String?
 }

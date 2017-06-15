@@ -55,8 +55,13 @@ class PTProjectTests: XCTestCase {
                 XCTAssert(PTProject.pointScale(project: actual) == PTProject.pointScale(project: after), fixture);
                 XCTAssert(PTProject.labels(project: actual) == PTProject.labels(project: after), fixture);
                 XCTAssert(PTProject.epics(project: actual) == PTProject.epics(project: after), fixture);
+                XCTAssert(storiesSet(project: actual).isSuperset(of: storiesSet(project: after)), fixture);
             }
         }
+    }
+    
+    func storiesSet(project: PTProject) -> Set<Story> {
+        return Set<Story>(PTProject.storiesById(project: project).values);
     }
     
     func importFixture(fixture: String, name: String) throws -> PTProject {
@@ -86,6 +91,9 @@ class PTProjectTests: XCTestCase {
             let description = dict.object(forKey: "description") as! String?
             let after_id = nullToNil(dict.object(forKey: "after_id")) as! Int64?
             let before_id = nullToNil(dict.object(forKey: "before_id")) as! Int64?
+            let estimate = dict.object(forKey: "estimate") as! Int?
+            let current_state = dict.object(forKey: "current_state") as! String?
+            let story_type = dict.object(forKey: "story_type") as! String?
             return CommandResult(
                 id: id,
                 deleted: deleted,
@@ -99,7 +107,10 @@ class PTProjectTests: XCTestCase {
                 description: description,
                 label_id: label_id,
                 after_id: after_id,
-                before_id: before_id
+                before_id: before_id,
+                estimate: estimate,
+                current_state: current_state,
+                story_type: story_type
             )
         }
         return ProjectAction(type: type, results: results)
