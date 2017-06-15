@@ -10,7 +10,12 @@ struct PTProject : Equatable {
     let name: String;
     
     static func reduce(project: PTProject, action: ProjectAction) -> PTProject {
-        return project;
+        return action.results.reduce(project, { (project, result) in
+            if (result.type == "project" && result.name != nil) {
+                return PTProject(name: result.name!);
+            }
+            return project;
+        })
     }
 }
 

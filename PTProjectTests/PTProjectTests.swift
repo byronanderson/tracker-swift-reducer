@@ -42,7 +42,17 @@ class PTProjectTests: XCTestCase {
         let data = try readFile(path: "fixtures/" + fixture + "/command", withExtension: "json");
         let json = try JSONSerialization.jsonObject(with: data, options: []) as! NSDictionary
         let commands = json.object(forKey: "stale_commands")! as! [Any]
-        return ProjectAction(data: commands.first!)
+        let command = commands.first! as! NSDictionary
+        let type = command.object(forKey: "type") as! String
+        let resultObjects = command.object(forKey: "results") as! [NSDictionary]
+        print("fixture: " + fixture)
+        let results = resultObjects.map { (dict) -> CommandResult in
+            print(dict);
+            let type = dict.object(forKey: "type") as! String
+            let name = dict.object(forKey: "name") as! String?
+            return CommandResult(type: type, name: name)
+        }
+        return ProjectAction(type: type, results: results)
     }
     
     func fixtures() throws -> [String] {

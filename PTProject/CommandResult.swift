@@ -1,14 +1,14 @@
 //
-//  ProjectAction.swift
+//  CommandResult.swift
 //  PTProject
 //
-//  Created by pivotal on 6/12/17.
+//  Created by pivotal on 6/15/17.
 //  Copyright © 2017 pivotaltracker. All rights reserved.
 //
 
 import Foundation
 
-struct ProjectAction {
+struct CommandResult {
     let type : String
-    let results : [CommandResult]
+    let name : String?
 }

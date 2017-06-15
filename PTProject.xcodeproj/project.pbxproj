@@ -12,6 +12,7 @@
 		AE29E38F1EEF4450003AC57D /* PTProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE29E38E1EEF4450003AC57D /* PTProject.swift */; };
 		AE29E3911EEF482D003AC57D /* ProjectAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE29E3901EEF482D003AC57D /* ProjectAction.swift */; };
 		AE29E3931EEF4E98003AC57D /* fixtures in Resources */ = {isa = PBXBuildFile; fileRef = AE29E3921EEF4E98003AC57D /* fixtures */; };
+		AEC92D2E1EF2EC3A00CEDF77 /* CommandResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC92D2D1EF2EC3A00CEDF77 /* CommandResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,7 +34,7 @@
 		AE29E38E1EEF4450003AC57D /* PTProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PTProject.swift; sourceTree = "<group>"; };
 		AE29E3901EEF482D003AC57D /* ProjectAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectAction.swift; sourceTree = "<group>"; };
 		AE29E3921EEF4E98003AC57D /* fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fixtures; sourceTree = "<group>"; };
-		AE29E3941EEF53B1003AC57D /* example.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = example.txt; sourceTree = "<group>"; };
+		AEC92D2D1EF2EC3A00CEDF77 /* CommandResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +80,7 @@
 				AE29E3781EEF3613003AC57D /* Info.plist */,
 				AE29E38E1EEF4450003AC57D /* PTProject.swift */,
 				AE29E3901EEF482D003AC57D /* ProjectAction.swift */,
+				AEC92D2D1EF2EC3A00CEDF77 /* CommandResult.swift */,
 			);
 			path = PTProject;
 			sourceTree = "<group>";
@@ -86,7 +88,6 @@
 		AE29E3811EEF3613003AC57D /* PTProjectTests */ = {
 			isa = PBXGroup;
 			children = (
-				AE29E3941EEF53B1003AC57D /* example.txt */,
 				AE29E3921EEF4E98003AC57D /* fixtures */,
 				AE29E3821EEF3613003AC57D /* PTProjectTests.swift */,
 				AE29E3841EEF3613003AC57D /* Info.plist */,
@@ -205,6 +206,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEC92D2E1EF2EC3A00CEDF77 /* CommandResult.swift in Sources */,
 				AE29E38F1EEF4450003AC57D /* PTProject.swift in Sources */,
 				AE29E3911EEF482D003AC57D /* ProjectAction.swift in Sources */,
 			);
