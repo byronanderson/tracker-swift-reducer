@@ -52,6 +52,7 @@ class PTProjectTests: XCTestCase {
                 XCTAssert(PTProject.startTime(project: actual) == PTProject.startTime(project: after), fixture);
                 XCTAssert(PTProject.estimateBugsAndChores(project: actual) == PTProject.estimateBugsAndChores(project: after), fixture);
                 XCTAssert(PTProject.timezone(project: actual) == PTProject.timezone(project: after), fixture);
+                XCTAssert(PTProject.pointScale(project: actual) == PTProject.pointScale(project: after), fixture);
             }
         }
     }
@@ -65,7 +66,11 @@ class PTProjectTests: XCTestCase {
         let estimateBugsAndChores = json.object(forKey: "bugs_and_chores_are_estimatable") as! Bool
         let timezoneObj = json.object(forKey: "time_zone") as! NSDictionary
         let timezone = timezoneObj.object(forKey: "olson_name") as! String
-        return PTProject(name: name, iterationLength: iterationLength, startTime: startTime, estimateBugsAndChores: estimateBugsAndChores, timezone: timezone);
+        let pointScaleString = json.object(forKey: "point_scale") as! String
+        let pointScale = pointScaleString.components(separatedBy: ",").map { (numString) -> Int in
+            return Int(numString)!;
+        }
+        return PTProject(name: name, iterationLength: iterationLength, startTime: startTime, estimateBugsAndChores: estimateBugsAndChores, timezone: timezone, pointScale: pointScale);
     }
     
     func importCommand(fixture: String) throws -> ProjectAction {
@@ -82,13 +87,15 @@ class PTProjectTests: XCTestCase {
             let startTime = dict.object(forKey: "start_time") as! Int64?
             let bugs_and_chores_are_estimatable = dict.object(forKey: "bugs_and_chores_are_estimatable") as! Bool?
             let time_zone = dict.object(forKey: "time_zone") as! NSDictionary?
+            let point_scale = dict.object(forKey: "point_scale") as! String?
             return CommandResult(
                 type: type,
                 name: name,
                 iteration_length: iterationLength,
                 start_time: startTime,
                 bugs_and_chores_are_estimatable: bugs_and_chores_are_estimatable,
-                time_zone: time_zone
+                time_zone: time_zone,
+                point_scale: point_scale
             )
         }
         return ProjectAction(type: type, results: results)

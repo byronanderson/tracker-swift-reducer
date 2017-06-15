@@ -14,6 +14,7 @@ struct PTProject : Equatable {
     let startTime : Int64;
     let estimateBugsAndChores : Bool;
     let timezone : String;
+    let pointScale : [Int];
     
     static func reduce(project: PTProject, action: ProjectAction) -> PTProject {
         return action.results.reduce(project, { (project, result) in
@@ -35,6 +36,12 @@ struct PTProject : Equatable {
                     let timezone = result.time_zone!.object(forKey: "olson_name") as! String
                     details.setValue(timezone, forKey: "timezone")
                 }
+                if (result.point_scale != nil) {
+                    let pointScale = result.point_scale!.components(separatedBy: ",").map { (numString) -> Int in
+                        return Int(numString)!;
+                    }
+                    details.setValue(pointScale, forKey: "pointScale")
+                }
                 return deserialize(dictionary: details);
             }
             return project;
@@ -47,7 +54,8 @@ struct PTProject : Equatable {
             "iterationLength": project.iterationLength,
             "startTime": project.startTime,
             "estimateBugsAndChores": project.estimateBugsAndChores,
-            "timezone": project.timezone
+            "timezone": project.timezone,
+            "pointScale": project.pointScale
         ];
     }
     
@@ -57,7 +65,8 @@ struct PTProject : Equatable {
             iterationLength: dictionary.object(forKey: "iterationLength") as! Int,
             startTime: dictionary.object(forKey: "startTime") as! Int64,
             estimateBugsAndChores: dictionary.object(forKey: "estimateBugsAndChores") as! Bool,
-            timezone: dictionary.object(forKey: "timezone") as! String
+            timezone: dictionary.object(forKey: "timezone") as! String,
+            pointScale: dictionary.object(forKey: "pointScale") as! [Int]
         )
     }
     
@@ -79,6 +88,10 @@ struct PTProject : Equatable {
     
     static func timezone(project: PTProject) -> String {
         return project.timezone;
+    }
+    
+    static func pointScale(project: PTProject) -> [Int] {
+        return project.pointScale;
     }
 }
 
