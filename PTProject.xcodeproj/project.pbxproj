@@ -13,6 +13,7 @@
 		AE29E3911EEF482D003AC57D /* ProjectAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE29E3901EEF482D003AC57D /* ProjectAction.swift */; };
 		AE29E3931EEF4E98003AC57D /* fixtures in Resources */ = {isa = PBXBuildFile; fileRef = AE29E3921EEF4E98003AC57D /* fixtures */; };
 		AEC92D2E1EF2EC3A00CEDF77 /* CommandResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC92D2D1EF2EC3A00CEDF77 /* CommandResult.swift */; };
+		AEC92D301EF3140B00CEDF77 /* ProjectMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC92D2F1EF3140B00CEDF77 /* ProjectMetadata.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,7 @@
 		AE29E3901EEF482D003AC57D /* ProjectAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectAction.swift; sourceTree = "<group>"; };
 		AE29E3921EEF4E98003AC57D /* fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fixtures; sourceTree = "<group>"; };
 		AEC92D2D1EF2EC3A00CEDF77 /* CommandResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandResult.swift; sourceTree = "<group>"; };
+		AEC92D2F1EF3140B00CEDF77 /* ProjectMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectMetadata.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 				AE29E38E1EEF4450003AC57D /* PTProject.swift */,
 				AE29E3901EEF482D003AC57D /* ProjectAction.swift */,
 				AEC92D2D1EF2EC3A00CEDF77 /* CommandResult.swift */,
+				AEC92D2F1EF3140B00CEDF77 /* ProjectMetadata.swift */,
 			);
 			path = PTProject;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEC92D301EF3140B00CEDF77 /* ProjectMetadata.swift in Sources */,
 				AEC92D2E1EF2EC3A00CEDF77 /* CommandResult.swift in Sources */,
 				AE29E38F1EEF4450003AC57D /* PTProject.swift in Sources */,
 				AE29E3911EEF482D003AC57D /* ProjectAction.swift in Sources */,

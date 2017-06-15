@@ -60,17 +60,7 @@ class PTProjectTests: XCTestCase {
     func importFixture(fixture: String, name: String) throws -> PTProject {
         let data = try readFile(path: "fixtures/" + fixture + "/" + name, withExtension: "json");
         let json = try JSONSerialization.jsonObject(with: data, options: []) as! NSDictionary
-        let name = json.object(forKey: "name") as! String
-        let iterationLength = json.object(forKey: "iteration_length") as! Int
-        let startTime = json.object(forKey: "start_time") as! Int64
-        let estimateBugsAndChores = json.object(forKey: "bugs_and_chores_are_estimatable") as! Bool
-        let timezoneObj = json.object(forKey: "time_zone") as! NSDictionary
-        let timezone = timezoneObj.object(forKey: "olson_name") as! String
-        let pointScaleString = json.object(forKey: "point_scale") as! String
-        let pointScale = pointScaleString.components(separatedBy: ",").map { (numString) -> Int in
-            return Int(numString)!;
-        }
-        return PTProject(name: name, iterationLength: iterationLength, startTime: startTime, estimateBugsAndChores: estimateBugsAndChores, timezone: timezone, pointScale: pointScale);
+        return PTProject.fromJSON(json: json);
     }
     
     func importCommand(fixture: String) throws -> ProjectAction {
