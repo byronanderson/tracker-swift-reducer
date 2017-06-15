@@ -13,6 +13,7 @@ struct PTProject : Equatable {
     let iterationLength : Int;
     let startTime : Int64;
     let estimateBugsAndChores : Bool;
+    let timezone : String;
     
     static func reduce(project: PTProject, action: ProjectAction) -> PTProject {
         return action.results.reduce(project, { (project, result) in
@@ -30,6 +31,10 @@ struct PTProject : Equatable {
                 if (result.bugs_and_chores_are_estimatable != nil) {
                     details.setValue(result.bugs_and_chores_are_estimatable!, forKey: "estimateBugsAndChores")
                 }
+                if (result.time_zone != nil) {
+                    let timezone = result.time_zone!.object(forKey: "olson_name") as! String
+                    details.setValue(timezone, forKey: "timezone")
+                }
                 return deserialize(dictionary: details);
             }
             return project;
@@ -41,7 +46,8 @@ struct PTProject : Equatable {
             "name": project.name,
             "iterationLength": project.iterationLength,
             "startTime": project.startTime,
-            "estimateBugsAndChores": project.estimateBugsAndChores
+            "estimateBugsAndChores": project.estimateBugsAndChores,
+            "timezone": project.timezone
         ];
     }
     
@@ -50,7 +56,8 @@ struct PTProject : Equatable {
             name: dictionary.object(forKey: "name") as! String,
             iterationLength: dictionary.object(forKey: "iterationLength") as! Int,
             startTime: dictionary.object(forKey: "startTime") as! Int64,
-            estimateBugsAndChores: dictionary.object(forKey: "estimateBugsAndChores") as! Bool
+            estimateBugsAndChores: dictionary.object(forKey: "estimateBugsAndChores") as! Bool,
+            timezone: dictionary.object(forKey: "timezone") as! String
         )
     }
     
@@ -68,6 +75,10 @@ struct PTProject : Equatable {
     
     static func estimateBugsAndChores(project: PTProject) -> Bool {
         return project.estimateBugsAndChores;
+    }
+    
+    static func timezone(project: PTProject) -> String {
+        return project.timezone;
     }
 }
 

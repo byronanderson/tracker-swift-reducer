@@ -14,4 +14,5 @@ struct CommandResult {
     let iteration_length : Int?
     let start_time : Int64?
     let bugs_and_chores_are_estimatable : Bool?
+    let time_zone : NSDictionary?
 }
