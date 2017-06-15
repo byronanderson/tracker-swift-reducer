@@ -18,4 +18,6 @@ struct CommandResult {
     let bugs_and_chores_are_estimatable : Bool?
     let time_zone : NSDictionary?
     let point_scale : String?
+    let description : String?
+    let label_id : Int64?
 }

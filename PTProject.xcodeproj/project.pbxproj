@@ -16,6 +16,8 @@
 		AEC92D301EF3140B00CEDF77 /* ProjectMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC92D2F1EF3140B00CEDF77 /* ProjectMetadata.swift */; };
 		AEC92D321EF3172700CEDF77 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC92D311EF3172700CEDF77 /* Label.swift */; };
 		AEC92D341EF3188900CEDF77 /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC92D331EF3188900CEDF77 /* Labels.swift */; };
+		AEC92D361EF3208200CEDF77 /* Epic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC92D351EF3208200CEDF77 /* Epic.swift */; };
+		AEC92D381EF3211700CEDF77 /* Epics.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC92D371EF3211700CEDF77 /* Epics.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +43,8 @@
 		AEC92D2F1EF3140B00CEDF77 /* ProjectMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectMetadata.swift; sourceTree = "<group>"; };
 		AEC92D311EF3172700CEDF77 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		AEC92D331EF3188900CEDF77 /* Labels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Labels.swift; sourceTree = "<group>"; };
+		AEC92D351EF3208200CEDF77 /* Epic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Epic.swift; sourceTree = "<group>"; };
+		AEC92D371EF3211700CEDF77 /* Epics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Epics.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,8 @@
 				AEC92D2F1EF3140B00CEDF77 /* ProjectMetadata.swift */,
 				AEC92D311EF3172700CEDF77 /* Label.swift */,
 				AEC92D331EF3188900CEDF77 /* Labels.swift */,
+				AEC92D351EF3208200CEDF77 /* Epic.swift */,
+				AEC92D371EF3211700CEDF77 /* Epics.swift */,
 			);
 			path = PTProject;
 			sourceTree = "<group>";
@@ -215,7 +221,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEC92D361EF3208200CEDF77 /* Epic.swift in Sources */,
 				AEC92D301EF3140B00CEDF77 /* ProjectMetadata.swift in Sources */,
+				AEC92D381EF3211700CEDF77 /* Epics.swift in Sources */,
 				AEC92D2E1EF2EC3A00CEDF77 /* CommandResult.swift in Sources */,
 				AEC92D341EF3188900CEDF77 /* Labels.swift in Sources */,
 				AE29E38F1EEF4450003AC57D /* PTProject.swift in Sources */,

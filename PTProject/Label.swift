@@ -13,7 +13,7 @@ struct Label : Hashable {
     let name : String
     
     var hashValue: Int {
-        return id.hashValue ^ name.hashValue  &* 16777619;
+        return id.hashValue;
     }
 }
 

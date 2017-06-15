@@ -54,6 +54,7 @@ class PTProjectTests: XCTestCase {
                 XCTAssert(PTProject.timezone(project: actual) == PTProject.timezone(project: after), fixture);
                 XCTAssert(PTProject.pointScale(project: actual) == PTProject.pointScale(project: after), fixture);
                 XCTAssert(PTProject.labels(project: actual) == PTProject.labels(project: after), fixture);
+                XCTAssert(PTProject.epics(project: actual) == PTProject.epics(project: after), fixture);
             }
         }
     }
@@ -78,9 +79,11 @@ class PTProjectTests: XCTestCase {
             let name = dict.object(forKey: "name") as! String?
             let iterationLength = dict.object(forKey: "iteration_length") as! Int?
             let startTime = dict.object(forKey: "start_time") as! Int64?
+            let label_id = dict.object(forKey: "label_id") as! Int64?
             let bugs_and_chores_are_estimatable = dict.object(forKey: "bugs_and_chores_are_estimatable") as! Bool?
             let time_zone = dict.object(forKey: "time_zone") as! NSDictionary?
             let point_scale = dict.object(forKey: "point_scale") as! String?
+            let description = dict.object(forKey: "description") as! String?
             return CommandResult(
                 id: id,
                 deleted: deleted,
@@ -90,7 +93,9 @@ class PTProjectTests: XCTestCase {
                 start_time: startTime,
                 bugs_and_chores_are_estimatable: bugs_and_chores_are_estimatable,
                 time_zone: time_zone,
-                point_scale: point_scale
+                point_scale: point_scale,
+                description: description,
+                label_id: label_id
             )
         }
         return ProjectAction(type: type, results: results)

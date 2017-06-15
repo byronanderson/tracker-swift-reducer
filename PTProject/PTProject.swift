@@ -11,18 +11,21 @@ import Foundation
 struct PTProject {
     let metadata : ProjectMetadata
     let labels : Labels
+    let epics : Epics
     
     static func reduce(project: PTProject, action: ProjectAction) -> PTProject {
         return PTProject(
             metadata: ProjectMetadata.reduce(project: project.metadata, action: action),
-            labels: Labels.reduce(labels: project.labels, action: action)
+            labels: Labels.reduce(labels: project.labels, action: action),
+            epics: Epics.reduce(epics: project.epics, action: action)
         );
     }
     
     static func fromJSON(json: NSDictionary) -> PTProject {
         return PTProject(
             metadata: ProjectMetadata.fromJSON(json: json),
-            labels: Labels.fromJSON(json: json)
+            labels: Labels.fromJSON(json: json),
+            epics: Epics.fromJSON(json: json)
         );
     }
     
@@ -52,5 +55,9 @@ struct PTProject {
     
     static func labels(project: PTProject) -> Set<Label> {
         return Labels.labels(labels: project.labels);
+    }
+    
+    static func epics(project: PTProject) -> [Int64 : Epic] {
+        return Epics.epicsById(epics: project.epics);
     }
 }
