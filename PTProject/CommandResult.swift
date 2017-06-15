@@ -11,4 +11,5 @@ import Foundation
 struct CommandResult {
     let type : String
     let name : String?
+    let iteration_length : Int?
 }

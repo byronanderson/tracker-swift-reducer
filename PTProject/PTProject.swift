@@ -7,18 +7,26 @@
 //
 
 struct PTProject : Equatable {
-    let name: String;
+    let name : String;
+    let iterationLength : Int;
     
     static func reduce(project: PTProject, action: ProjectAction) -> PTProject {
         return action.results.reduce(project, { (project, result) in
-            if (result.type == "project" && result.name != nil) {
-                return PTProject(name: result.name!);
+            var newProject = project;
+            if (result.type == "project") {
+                if (result.name != nil) {
+                    newProject = PTProject(name: result.name!, iterationLength: newProject.iterationLength);
+                }
+                if (result.iteration_length != nil) {
+                    newProject = PTProject(name: newProject.name, iterationLength: result.iteration_length!);
+                }
             }
-            return project;
+            return newProject;
         })
     }
 }
 
 func ==(lhs: PTProject, rhs: PTProject) -> Bool {
-    return lhs.name == rhs.name;
+    // lhs === rhs ||
+    return lhs.name == rhs.name && lhs.iterationLength == rhs.iterationLength;
 }
