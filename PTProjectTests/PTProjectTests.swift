@@ -40,13 +40,15 @@ class PTProjectTests: XCTestCase {
                 let action = try importCommand(fixture: fixture)
                 let after = try importFixture(fixture: fixture, name: "after");
                 let actual = PTProject.reduce(project: before, action: action);
-                print("before");
-                print(before);
-                print("after");
-                print(after);
-                print("actual");
-                print(actual);
-                XCTAssert(actual == after, fixture);
+//                print("before");
+//                print(before);
+//                print("after");
+//                print(after);
+//                print("actual");
+//                print(actual);
+                XCTAssert(PTProject.projectName(project: actual) == PTProject.projectName(project: after), fixture);
+                XCTAssert(PTProject.iterationLength(project: actual) == PTProject.iterationLength(project: after), fixture);
+                XCTAssert(PTProject.startTime(project: actual) == PTProject.startTime(project: after), fixture);
             }
         }
     }
@@ -56,7 +58,8 @@ class PTProjectTests: XCTestCase {
         let json = try JSONSerialization.jsonObject(with: data, options: []) as! NSDictionary
         let name = json.object(forKey: "name") as! String
         let iterationLength = json.object(forKey: "iteration_length") as! Int
-        return PTProject(name: name, iterationLength: iterationLength);
+        let startTime = json.object(forKey: "start_time") as! Int64
+        return PTProject(name: name, iterationLength: iterationLength, startTime: startTime);
     }
     
     func importCommand(fixture: String) throws -> ProjectAction {
@@ -72,7 +75,8 @@ class PTProjectTests: XCTestCase {
             let type = dict.object(forKey: "type") as! String
             let name = dict.object(forKey: "name") as! String?
             let iterationLength = dict.object(forKey: "iteration_length") as! Int?
-            return CommandResult(type: type, name: name, iteration_length: iterationLength)
+            let startTime = dict.object(forKey: "start_time") as! Int64?
+            return CommandResult(type: type, name: name, iteration_length: iterationLength, start_time: startTime)
         }
         return ProjectAction(type: type, results: results)
     }

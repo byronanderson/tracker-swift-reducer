@@ -11,6 +11,7 @@ import Foundation
 struct PTProject : Equatable {
     let name : String;
     let iterationLength : Int;
+    let startTime : Int64;
     
     static func reduce(project: PTProject, action: ProjectAction) -> PTProject {
         return action.results.reduce(project, { (project, result) in
@@ -22,6 +23,9 @@ struct PTProject : Equatable {
                 if (result.iteration_length != nil) {
                     details.setValue(result.iteration_length!, forKey: "iterationLength")
                 }
+                if (result.start_time != nil) {
+                    details.setValue(result.start_time!, forKey: "startTime")
+                }
                 return deserialize(dictionary: details);
             }
             return project;
@@ -31,15 +35,29 @@ struct PTProject : Equatable {
     static func serialize(project: PTProject) -> NSMutableDictionary {
         return [
             "name": project.name,
-            "iterationLength": project.iterationLength
+            "iterationLength": project.iterationLength,
+            "startTime": project.startTime
         ];
     }
     
     static func deserialize(dictionary: NSDictionary) -> PTProject {
         return PTProject(
             name: dictionary.object(forKey: "name") as! String,
-            iterationLength: dictionary.object(forKey: "iterationLength") as! Int
+            iterationLength: dictionary.object(forKey: "iterationLength") as! Int,
+            startTime: dictionary.object(forKey: "startTime") as! Int64
         )
+    }
+    
+    static func projectName(project: PTProject) -> String {
+        return project.name;
+    }
+    
+    static func iterationLength(project: PTProject) -> Int {
+        return project.iterationLength;
+    }
+    
+    static func startTime(project: PTProject) -> Int64 {
+        return project.startTime;
     }
 }
 

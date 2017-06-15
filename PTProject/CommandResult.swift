@@ -12,4 +12,5 @@ struct CommandResult {
     let type : String
     let name : String?
     let iteration_length : Int?
+    let start_time : Int64?
 }
