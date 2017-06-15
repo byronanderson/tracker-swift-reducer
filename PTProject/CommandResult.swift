@@ -9,6 +9,8 @@
 import Foundation
 
 struct CommandResult {
+    let id : Int64?
+    let deleted : Bool?
     let type : String
     let name : String?
     let iteration_length : Int?

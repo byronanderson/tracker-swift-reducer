@@ -53,6 +53,7 @@ class PTProjectTests: XCTestCase {
                 XCTAssert(PTProject.estimateBugsAndChores(project: actual) == PTProject.estimateBugsAndChores(project: after), fixture);
                 XCTAssert(PTProject.timezone(project: actual) == PTProject.timezone(project: after), fixture);
                 XCTAssert(PTProject.pointScale(project: actual) == PTProject.pointScale(project: after), fixture);
+                XCTAssert(PTProject.labels(project: actual) == PTProject.labels(project: after), fixture);
             }
         }
     }
@@ -71,6 +72,8 @@ class PTProjectTests: XCTestCase {
         let type = command.object(forKey: "type") as! String
         let resultObjects = command.object(forKey: "results") as! [NSDictionary]
         let results = resultObjects.map { (dict) -> CommandResult in
+            let id = dict.object(forKey: "id") as! Int64?
+            let deleted = dict.object(forKey: "deleted") as! Bool?
             let type = dict.object(forKey: "type") as! String
             let name = dict.object(forKey: "name") as! String?
             let iterationLength = dict.object(forKey: "iteration_length") as! Int?
@@ -79,6 +82,8 @@ class PTProjectTests: XCTestCase {
             let time_zone = dict.object(forKey: "time_zone") as! NSDictionary?
             let point_scale = dict.object(forKey: "point_scale") as! String?
             return CommandResult(
+                id: id,
+                deleted: deleted,
                 type: type,
                 name: name,
                 iteration_length: iterationLength,
