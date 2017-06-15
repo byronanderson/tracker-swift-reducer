@@ -18,6 +18,7 @@
 		AEC92D341EF3188900CEDF77 /* Labels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC92D331EF3188900CEDF77 /* Labels.swift */; };
 		AEC92D361EF3208200CEDF77 /* Epic.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC92D351EF3208200CEDF77 /* Epic.swift */; };
 		AEC92D381EF3211700CEDF77 /* Epics.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC92D371EF3211700CEDF77 /* Epics.swift */; };
+		AEC92D3A1EF32D8400CEDF77 /* EpicIds.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC92D391EF32D8400CEDF77 /* EpicIds.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		AEC92D331EF3188900CEDF77 /* Labels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Labels.swift; sourceTree = "<group>"; };
 		AEC92D351EF3208200CEDF77 /* Epic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Epic.swift; sourceTree = "<group>"; };
 		AEC92D371EF3211700CEDF77 /* Epics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Epics.swift; sourceTree = "<group>"; };
+		AEC92D391EF32D8400CEDF77 /* EpicIds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpicIds.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				AEC92D331EF3188900CEDF77 /* Labels.swift */,
 				AEC92D351EF3208200CEDF77 /* Epic.swift */,
 				AEC92D371EF3211700CEDF77 /* Epics.swift */,
+				AEC92D391EF32D8400CEDF77 /* EpicIds.swift */,
 			);
 			path = PTProject;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEC92D3A1EF32D8400CEDF77 /* EpicIds.swift in Sources */,
 				AEC92D361EF3208200CEDF77 /* Epic.swift in Sources */,
 				AEC92D301EF3140B00CEDF77 /* ProjectMetadata.swift in Sources */,
 				AEC92D381EF3211700CEDF77 /* Epics.swift in Sources */,

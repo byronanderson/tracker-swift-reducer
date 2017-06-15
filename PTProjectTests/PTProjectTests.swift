@@ -84,6 +84,8 @@ class PTProjectTests: XCTestCase {
             let time_zone = dict.object(forKey: "time_zone") as! NSDictionary?
             let point_scale = dict.object(forKey: "point_scale") as! String?
             let description = dict.object(forKey: "description") as! String?
+            let after_id = nullToNil(dict.object(forKey: "after_id")) as! Int64?
+            let before_id = nullToNil(dict.object(forKey: "before_id")) as! Int64?
             return CommandResult(
                 id: id,
                 deleted: deleted,
@@ -95,10 +97,20 @@ class PTProjectTests: XCTestCase {
                 time_zone: time_zone,
                 point_scale: point_scale,
                 description: description,
-                label_id: label_id
+                label_id: label_id,
+                after_id: after_id,
+                before_id: before_id
             )
         }
         return ProjectAction(type: type, results: results)
+    }
+    
+    func nullToNil(_ value : Any?) -> Any? {
+        if value is NSNull {
+            return nil
+        } else {
+            return value
+        }
     }
     
     func fixtures() throws -> [String] {

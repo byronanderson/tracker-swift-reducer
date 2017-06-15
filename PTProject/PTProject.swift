@@ -12,12 +12,14 @@ struct PTProject {
     let metadata : ProjectMetadata
     let labels : Labels
     let epics : Epics
+    let epicIds : EpicIds
     
     static func reduce(project: PTProject, action: ProjectAction) -> PTProject {
         return PTProject(
             metadata: ProjectMetadata.reduce(project: project.metadata, action: action),
             labels: Labels.reduce(labels: project.labels, action: action),
-            epics: Epics.reduce(epics: project.epics, action: action)
+            epics: Epics.reduce(epics: project.epics, action: action),
+            epicIds: EpicIds.reduce(epicIds: project.epicIds, action: action)
         );
     }
     
@@ -25,7 +27,8 @@ struct PTProject {
         return PTProject(
             metadata: ProjectMetadata.fromJSON(json: json),
             labels: Labels.fromJSON(json: json),
-            epics: Epics.fromJSON(json: json)
+            epics: Epics.fromJSON(json: json),
+            epicIds: EpicIds.fromJSON(json: json)
         );
     }
     
@@ -57,7 +60,10 @@ struct PTProject {
         return Labels.labels(labels: project.labels);
     }
     
-    static func epics(project: PTProject) -> [Int64 : Epic] {
-        return Epics.epicsById(epics: project.epics);
+    static func epics(project: PTProject) -> [Epic] {
+        let epicsById = Epics.epicsById(epics: project.epics)
+        return EpicIds.epicIds(epicIds: project.epicIds).map({ (id) -> Epic in
+            return epicsById[id]!
+        })
     }
 }

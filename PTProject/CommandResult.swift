@@ -20,4 +20,6 @@ struct CommandResult {
     let point_scale : String?
     let description : String?
     let label_id : Int64?
+    let after_id : Int64?
+    let before_id : Int64?
 }
