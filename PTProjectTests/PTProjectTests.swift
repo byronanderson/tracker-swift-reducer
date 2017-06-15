@@ -36,6 +36,7 @@ class PTProjectTests: XCTestCase {
             } else if (dontGetIt.index(of: fixture) != nil) {
                 
             } else {
+                print("fixture: " + fixture)
                 let before = try importFixture(fixture: fixture, name: "before");
                 let action = try importCommand(fixture: fixture)
                 let after = try importFixture(fixture: fixture, name: "after");
@@ -49,6 +50,7 @@ class PTProjectTests: XCTestCase {
                 XCTAssert(PTProject.projectName(project: actual) == PTProject.projectName(project: after), fixture);
                 XCTAssert(PTProject.iterationLength(project: actual) == PTProject.iterationLength(project: after), fixture);
                 XCTAssert(PTProject.startTime(project: actual) == PTProject.startTime(project: after), fixture);
+                XCTAssert(PTProject.estimateBugsAndChores(project: actual) == PTProject.estimateBugsAndChores(project: after), fixture);
             }
         }
     }
@@ -59,7 +61,8 @@ class PTProjectTests: XCTestCase {
         let name = json.object(forKey: "name") as! String
         let iterationLength = json.object(forKey: "iteration_length") as! Int
         let startTime = json.object(forKey: "start_time") as! Int64
-        return PTProject(name: name, iterationLength: iterationLength, startTime: startTime);
+        let estimateBugsAndChores = json.object(forKey: "bugs_and_chores_are_estimatable") as! Bool
+        return PTProject(name: name, iterationLength: iterationLength, startTime: startTime, estimateBugsAndChores: estimateBugsAndChores);
     }
     
     func importCommand(fixture: String) throws -> ProjectAction {
@@ -69,14 +72,19 @@ class PTProjectTests: XCTestCase {
         let command = commands.first! as! NSDictionary
         let type = command.object(forKey: "type") as! String
         let resultObjects = command.object(forKey: "results") as! [NSDictionary]
-        print("fixture: " + fixture)
         let results = resultObjects.map { (dict) -> CommandResult in
-            print(dict);
             let type = dict.object(forKey: "type") as! String
             let name = dict.object(forKey: "name") as! String?
             let iterationLength = dict.object(forKey: "iteration_length") as! Int?
             let startTime = dict.object(forKey: "start_time") as! Int64?
-            return CommandResult(type: type, name: name, iteration_length: iterationLength, start_time: startTime)
+            let bugs_and_chores_are_estimatable = dict.object(forKey: "bugs_and_chores_are_estimatable") as! Bool?
+            return CommandResult(
+                type: type,
+                name: name,
+                iteration_length: iterationLength,
+                start_time: startTime,
+                bugs_and_chores_are_estimatable: bugs_and_chores_are_estimatable
+            )
         }
         return ProjectAction(type: type, results: results)
     }

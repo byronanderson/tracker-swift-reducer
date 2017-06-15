@@ -12,6 +12,7 @@ struct PTProject : Equatable {
     let name : String;
     let iterationLength : Int;
     let startTime : Int64;
+    let estimateBugsAndChores : Bool;
     
     static func reduce(project: PTProject, action: ProjectAction) -> PTProject {
         return action.results.reduce(project, { (project, result) in
@@ -26,6 +27,9 @@ struct PTProject : Equatable {
                 if (result.start_time != nil) {
                     details.setValue(result.start_time!, forKey: "startTime")
                 }
+                if (result.bugs_and_chores_are_estimatable != nil) {
+                    details.setValue(result.bugs_and_chores_are_estimatable!, forKey: "estimateBugsAndChores")
+                }
                 return deserialize(dictionary: details);
             }
             return project;
@@ -36,7 +40,8 @@ struct PTProject : Equatable {
         return [
             "name": project.name,
             "iterationLength": project.iterationLength,
-            "startTime": project.startTime
+            "startTime": project.startTime,
+            "estimateBugsAndChores": project.estimateBugsAndChores
         ];
     }
     
@@ -44,7 +49,8 @@ struct PTProject : Equatable {
         return PTProject(
             name: dictionary.object(forKey: "name") as! String,
             iterationLength: dictionary.object(forKey: "iterationLength") as! Int,
-            startTime: dictionary.object(forKey: "startTime") as! Int64
+            startTime: dictionary.object(forKey: "startTime") as! Int64,
+            estimateBugsAndChores: dictionary.object(forKey: "estimateBugsAndChores") as! Bool
         )
     }
     
@@ -58,6 +64,10 @@ struct PTProject : Equatable {
     
     static func startTime(project: PTProject) -> Int64 {
         return project.startTime;
+    }
+    
+    static func estimateBugsAndChores(project: PTProject) -> Bool {
+        return project.estimateBugsAndChores;
     }
 }
 
