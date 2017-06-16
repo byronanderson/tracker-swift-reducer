@@ -76,7 +76,7 @@ struct Stories {
             "name": story.name,
             "currentState": story.currentState,
             "storyType": story.storyType,
-            "estimate": story.estimate
+            "estimate": story.estimate as Any
         ];
     }
     
