@@ -56,8 +56,20 @@ class PTProjectTests: XCTestCase {
                 XCTAssert(PTProject.labels(project: actual) == PTProject.labels(project: after), fixture);
                 XCTAssert(PTProject.epics(project: actual) == PTProject.epics(project: after), fixture);
                 XCTAssert(storiesSet(project: actual).isSuperset(of: storiesSet(project: after)), fixture);
+                XCTAssert(endsWith(PTProject.storyIds(project: actual), PTProject.storyIds(project: after)), fixture);
             }
         }
+    }
+    
+    func endsWith(_ list1: [Int64], _ list2: [Int64]) -> Bool {
+        if list2.count == 0 {
+            return true
+        }
+        let startIndex = list1.count - list2.count
+        if (startIndex < 0) {
+            return false
+        }
+        return Array(list1[startIndex...(list1.count - 1)]) == list2
     }
     
     func storiesSet(project: PTProject) -> Set<Story> {
@@ -94,6 +106,7 @@ class PTProjectTests: XCTestCase {
             let estimate = dict.object(forKey: "estimate") as! Int?
             let current_state = dict.object(forKey: "current_state") as! String?
             let story_type = dict.object(forKey: "story_type") as! String?
+            let moved = dict.object(forKey: "moved") as! Bool?
             return CommandResult(
                 id: id,
                 deleted: deleted,
@@ -110,7 +123,8 @@ class PTProjectTests: XCTestCase {
                 before_id: before_id,
                 estimate: estimate,
                 current_state: current_state,
-                story_type: story_type
+                story_type: story_type,
+                moved: moved
             )
         }
         return ProjectAction(type: type, results: results)

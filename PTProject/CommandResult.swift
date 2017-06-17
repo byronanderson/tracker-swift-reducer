@@ -25,4 +25,5 @@ struct CommandResult {
     let estimate : Int?
     let current_state : String?
     let story_type : String?
+    let moved : Bool?
 }

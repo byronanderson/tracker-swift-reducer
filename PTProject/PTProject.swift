@@ -14,6 +14,7 @@ struct PTProject {
     let epics : Epics
     let epicIds : EpicIds
     let stories : Stories
+    let storyIds : StoryIds
     
     static func reduce(project: PTProject, action: ProjectAction) -> PTProject {
         return PTProject(
@@ -21,7 +22,8 @@ struct PTProject {
             labels: Labels.reduce(labels: project.labels, action: action),
             epics: Epics.reduce(epics: project.epics, action: action),
             epicIds: EpicIds.reduce(epicIds: project.epicIds, action: action),
-            stories: Stories.reduce(stories: project.stories, action: action)
+            stories: Stories.reduce(stories: project.stories, action: action),
+            storyIds: StoryIds.reduce(storyIds: project.storyIds, action: action)
         );
     }
     
@@ -31,7 +33,8 @@ struct PTProject {
             labels: Labels.fromJSON(json: json),
             epics: Epics.fromJSON(json: json),
             epicIds: EpicIds.fromJSON(json: json),
-            stories: Stories.fromJSON(json: json)
+            stories: Stories.fromJSON(json: json),
+            storyIds: StoryIds.fromJSON(json: json)
         );
     }
     
@@ -72,5 +75,9 @@ struct PTProject {
     
     static func storiesById(project: PTProject) -> [Int64 : Story] {
         return Stories.storiesById(stories: project.stories)
+    }
+    
+    static func storyIds(project: PTProject) -> [Int64] {
+        return StoryIds.storyIds(storyIds: project.storyIds)
     }
 }
