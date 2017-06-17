@@ -13,6 +13,8 @@
 		AE29E3911EEF482D003AC57D /* ProjectAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE29E3901EEF482D003AC57D /* ProjectAction.swift */; };
 		AE29E3931EEF4E98003AC57D /* fixtures in Resources */ = {isa = PBXBuildFile; fileRef = AE29E3921EEF4E98003AC57D /* fixtures */; };
 		AE8993061EF3A1660069FB30 /* StoryIds.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8993051EF3A1660069FB30 /* StoryIds.swift */; };
+		AE8993081EF4EC4D0069FB30 /* Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8993071EF4EC4D0069FB30 /* Tasks.swift */; };
+		AE89930A1EF4ED200069FB30 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE8993091EF4ED200069FB30 /* Task.swift */; };
 		AEC92D2E1EF2EC3A00CEDF77 /* CommandResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC92D2D1EF2EC3A00CEDF77 /* CommandResult.swift */; };
 		AEC92D301EF3140B00CEDF77 /* ProjectMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC92D2F1EF3140B00CEDF77 /* ProjectMetadata.swift */; };
 		AEC92D321EF3172700CEDF77 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC92D311EF3172700CEDF77 /* Label.swift */; };
@@ -44,6 +46,8 @@
 		AE29E3901EEF482D003AC57D /* ProjectAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectAction.swift; sourceTree = "<group>"; };
 		AE29E3921EEF4E98003AC57D /* fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fixtures; sourceTree = "<group>"; };
 		AE8993051EF3A1660069FB30 /* StoryIds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryIds.swift; sourceTree = "<group>"; };
+		AE8993071EF4EC4D0069FB30 /* Tasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tasks.swift; sourceTree = "<group>"; };
+		AE8993091EF4ED200069FB30 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		AEC92D2D1EF2EC3A00CEDF77 /* CommandResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandResult.swift; sourceTree = "<group>"; };
 		AEC92D2F1EF3140B00CEDF77 /* ProjectMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectMetadata.swift; sourceTree = "<group>"; };
 		AEC92D311EF3172700CEDF77 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
@@ -108,6 +112,8 @@
 				AEC92D3B1EF34C5700CEDF77 /* Story.swift */,
 				AEC92D3D1EF34CDD00CEDF77 /* Stories.swift */,
 				AE8993051EF3A1660069FB30 /* StoryIds.swift */,
+				AE8993071EF4EC4D0069FB30 /* Tasks.swift */,
+				AE8993091EF4ED200069FB30 /* Task.swift */,
 			);
 			path = PTProject;
 			sourceTree = "<group>";
@@ -243,7 +249,9 @@
 				AEC92D341EF3188900CEDF77 /* Labels.swift in Sources */,
 				AE29E38F1EEF4450003AC57D /* PTProject.swift in Sources */,
 				AEC92D321EF3172700CEDF77 /* Label.swift in Sources */,
+				AE8993081EF4EC4D0069FB30 /* Tasks.swift in Sources */,
 				AE29E3911EEF482D003AC57D /* ProjectAction.swift in Sources */,
+				AE89930A1EF4ED200069FB30 /* Task.swift in Sources */,
 				AEC92D3C1EF34C5700CEDF77 /* Story.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

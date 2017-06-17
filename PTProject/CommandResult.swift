@@ -26,4 +26,5 @@ struct CommandResult {
     let current_state : String?
     let story_type : String?
     let moved : Bool?
+    let complete : Bool?
 }

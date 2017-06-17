@@ -57,11 +57,34 @@ class PTProjectTests: XCTestCase {
                 XCTAssert(PTProject.epics(project: actual) == PTProject.epics(project: after), fixture);
                 XCTAssert(storiesSet(project: actual).isSuperset(of: storiesSet(project: after)), fixture);
                 XCTAssert(endsWith(PTProject.storyIds(project: actual), PTProject.storyIds(project: after)), fixture);
+                XCTAssert(supermap(PTProject.tasks(project: actual),  PTProject.tasks(project: after)), fixture);
             }
         }
     }
     
-    func endsWith(_ list1: [Int64], _ list2: [Int64]) -> Bool {
+    func mapsEqual<T: Hashable>(_ map1: [Int64 : T], _ map2: [Int64 : T]) -> Bool {
+        return map1.count == map2.count && map1.reduce(true) { (success, tuple) -> Bool in
+            let map1Value = tuple.value
+            let map2Value = map2[tuple.key]
+            if map2Value == nil {
+                return false
+            }
+            return success && (map1Value == map2Value)
+        }
+    }
+    
+    func supermap<T: Hashable>(_ map1: [Int64 : T], _ map2: [Int64 : T]) -> Bool {
+        return map1.reduce(true) { (success, tuple) -> Bool in
+            let map1Value = tuple.value
+            let map2Value = map2[tuple.key]
+            if map2Value == nil {
+                return success
+            }
+            return success && (map1Value == map2Value)
+        }
+    }
+    
+    func endsWith<T: Equatable>(_ list1: [T], _ list2: [T]) -> Bool {
         if list2.count == 0 {
             return true
         }
@@ -107,6 +130,7 @@ class PTProjectTests: XCTestCase {
             let current_state = dict.object(forKey: "current_state") as! String?
             let story_type = dict.object(forKey: "story_type") as! String?
             let moved = dict.object(forKey: "moved") as! Bool?
+            let complete = dict.object(forKey: "complete") as! Bool?
             return CommandResult(
                 id: id,
                 deleted: deleted,
@@ -124,7 +148,8 @@ class PTProjectTests: XCTestCase {
                 estimate: estimate,
                 current_state: current_state,
                 story_type: story_type,
-                moved: moved
+                moved: moved,
+                complete: complete
             )
         }
         return ProjectAction(type: type, results: results)
