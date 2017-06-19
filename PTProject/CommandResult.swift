@@ -34,4 +34,8 @@ struct CommandResult {
     let person_id : Int64?
     let file_attachment_ids : [Int64]?
     let google_attachment_ids : [Int64]?
+    let number : Int?
+    let team_strength : Double?
+    let length : Int?
+    let default_length : Bool?
 }

@@ -21,7 +21,7 @@ class PTProjectTests: XCTestCase {
         super.tearDown()
     }
     
-    func testProjectName() throws {
+    func testCommandProcessing() throws {
         let panicCases = ["MultiModelImport-10369989", "MultiModelImport-27257231", "MultiModelImport-41139561", "MultiModelImport-57194113", "MultiModelImport-68525351", "MultiModelImport-14769923", "MultiModelImport-29023543", "MultiModelImport-43472779", "MultiModelImport-57624312", "MultiModelImport-70900692", "MultiModelImport-17599671", "MultiModelImport-34692689", "MultiModelImport-4353822", "MultiModelImport-66418197", "MultiModelImport-73275036", "MultiModelImport-18920451", "MultiModelImport-35768267", "MultiModelImport-47499381", "MultiModelImport-66729661", "MultiModelImport-79622373", "MultiModelImport-21958504", "MultiModelImport-36355313", "MultiModelImport-53050154", "MultiModelImport-67005736", "MultiModelImport-95851043", "MultiModelImport-26540427", "MultiModelImport-38149772", "MultiModelImport-55647595", "MultiModelImport-67682249", "MultiModelImport-96947649", "StoryUpdate-91016771", "StoryUpdate-74832161"];
         let buggyPlatform = ["MultiStoryDelete-19984752", "MultiStoryDelete-34466002", "MultiStoryDelete-35566115", "MultiStoryDelete-52798815", "MultiStoryDelete-6094590", "MultiStoryDelete-79245431", "MultiStoryDelete-81709313", "CommentDelete-17742905", "CommentDelete-33343171", "CommentDelete-39883878", "CommentDelete-63196281", "CommentDelete-7855453", "CommentDelete-8839544", "CommentUpdate-451557", "MultiStoryMoveFromProject-68551553", "MultiStoryMoveFromProject-92863366"];
         let dontGetIt = ["MultiStoryMove-43793222"];
@@ -59,6 +59,7 @@ class PTProjectTests: XCTestCase {
                 XCTAssert(endsWith(PTProject.storyIds(project: actual), PTProject.storyIds(project: after)), fixture);
                 XCTAssert(supermap(PTProject.tasks(project: actual),  PTProject.tasks(project: after)), fixture);
                 XCTAssert(supermap(PTProject.comments(project: actual),  PTProject.comments(project: after)), fixture);
+                XCTAssert(PTProject.iterationOverrides(project: actual) == PTProject.iterationOverrides(project: after), fixture);
             }
         }
     }
@@ -137,6 +138,16 @@ class PTProjectTests: XCTestCase {
             let epic_id = dict.object(forKey: "epic_id") as! Int64?
             let text = dict.object(forKey: "text") as! String?
             let person_id = dict.object(forKey: "person_id") as! Int64?
+            var default_length : Bool? = nil
+            var length : Int? = nil
+            
+        
+            let lengthVal = dict.object(forKey: "length")
+            if lengthVal is String {
+                default_length = (lengthVal as! String) == "default"
+            } else if lengthVal is Int {
+                length = lengthVal as? Int
+            }
             return CommandResult(
                 id: id,
                 deleted: deleted,
@@ -162,7 +173,11 @@ class PTProjectTests: XCTestCase {
                 text: text,
                 person_id: person_id,
                 file_attachment_ids: dict.object(forKey: "file_attachment_ids") as! [Int64]?,
-                google_attachment_ids: dict.object(forKey: "google_attachment_ids") as! [Int64]?
+                google_attachment_ids: dict.object(forKey: "google_attachment_ids") as! [Int64]?,
+                number: dict.object(forKey: "number") as! Int?,
+                team_strength: dict.object(forKey: "team_strength") as! Double?,
+                length: length,
+                default_length: default_length
             )
         }
         return ProjectAction(type: type, results: results)

@@ -23,7 +23,7 @@ struct Comments {
     
     static func reduce(comments: Comments, action: ProjectAction) -> Comments {
         var newComments = comments
-        for result in sortResults(action.results) {
+        for result in action.results {
             if result.type == "comment" {
                 if (result.deleted == true) {
                     var newList = newComments.comments
@@ -73,24 +73,6 @@ struct Comments {
             }
         }
         return retVal
-    }
-    
-    private static func sortResults(_ results : [CommandResult]) -> [CommandResult] {
-        return results.sorted(by: { (one, two) -> Bool in
-            return categorize(one) - categorize(two) > 0;
-        })
-    }
-    
-    private static func categorize(_ result : CommandResult) -> Int {
-        if result.type == "comment" {
-            return 2
-        } else if result.type == "file_attachment" {
-            return 1
-        } else if result.type == "google_attachment" {
-            return 1
-        } else {
-            return 0
-        }
     }
     
     private static func serialize(comment: Comment) -> NSMutableDictionary {

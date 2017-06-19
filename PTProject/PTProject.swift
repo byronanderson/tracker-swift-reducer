@@ -17,6 +17,7 @@ struct PTProject {
     let storyIds : StoryIds
     let tasks : Tasks
     let comments : Comments
+    let iterationOverrides : IterationOverrides
     
     static func reduce(project: PTProject, action: ProjectAction) -> PTProject {
         return PTProject(
@@ -27,7 +28,8 @@ struct PTProject {
             stories: Stories.reduce(stories: project.stories, action: action),
             storyIds: StoryIds.reduce(storyIds: project.storyIds, action: action),
             tasks: Tasks.reduce(tasks: project.tasks, action: action),
-            comments: Comments.reduce(comments: project.comments, action: action)
+            comments: Comments.reduce(comments: project.comments, action: action),
+            iterationOverrides: IterationOverrides.reduce(iterationOverrides: project.iterationOverrides, action: action)
         );
     }
     
@@ -40,7 +42,8 @@ struct PTProject {
             stories: Stories.fromJSON(json: json),
             storyIds: StoryIds.fromJSON(json: json),
             tasks: Tasks.fromJSON(json: json),
-            comments: Comments.fromJSON(json: json)
+            comments: Comments.fromJSON(json: json),
+            iterationOverrides: IterationOverrides.fromJSON(json: json)
         );
     }
     
@@ -93,5 +96,9 @@ struct PTProject {
     
     static func comments(project: PTProject) -> [Int64 : Comment] {
         return Comments.commentsById(comments: project.comments)
+    }
+    
+    static func iterationOverrides(project: PTProject) -> [IterationOverride] {
+        return IterationOverrides.iterationOverrides(iterationOverrides: project.iterationOverrides)
     }
 }
