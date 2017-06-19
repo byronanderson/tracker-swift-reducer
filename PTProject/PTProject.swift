@@ -18,6 +18,8 @@ struct PTProject {
     let tasks : Tasks
     let comments : Comments
     let iterationOverrides : IterationOverrides
+    let fileAttachments : FileAttachments
+    let googleAttachments : GoogleAttachments
     
     static func reduce(project: PTProject, action: ProjectAction) -> PTProject {
         return PTProject(
@@ -29,7 +31,9 @@ struct PTProject {
             storyIds: StoryIds.reduce(storyIds: project.storyIds, action: action),
             tasks: Tasks.reduce(tasks: project.tasks, action: action),
             comments: Comments.reduce(comments: project.comments, action: action),
-            iterationOverrides: IterationOverrides.reduce(iterationOverrides: project.iterationOverrides, action: action)
+            iterationOverrides: IterationOverrides.reduce(iterationOverrides: project.iterationOverrides, action: action),
+            fileAttachments: FileAttachments.reduce(fileAttachments: project.fileAttachments, action: action),
+            googleAttachments: GoogleAttachments.reduce(googleAttachments: project.googleAttachments, action: action)
         );
     }
     
@@ -43,7 +47,9 @@ struct PTProject {
             storyIds: StoryIds.fromJSON(json: json),
             tasks: Tasks.fromJSON(json: json),
             comments: Comments.fromJSON(json: json),
-            iterationOverrides: IterationOverrides.fromJSON(json: json)
+            iterationOverrides: IterationOverrides.fromJSON(json: json),
+            fileAttachments: FileAttachments.fromJSON(json: json),
+            googleAttachments: GoogleAttachments.fromJSON(json: json)
         );
     }
     
@@ -100,5 +106,13 @@ struct PTProject {
     
     static func iterationOverrides(project: PTProject) -> [IterationOverride] {
         return IterationOverrides.iterationOverrides(iterationOverrides: project.iterationOverrides)
+    }
+    
+    static func fileAttachments(project: PTProject) -> [Int64 : FileAttachment] {
+        return FileAttachments.fileAttachments(fileAttachments: project.fileAttachments)
+    }
+    
+    static func googleAttachments(project: PTProject) -> [Int64 : GoogleAttachment] {
+        return GoogleAttachments.googleAttachments(googleAttachments: project.googleAttachments)
     }
 }

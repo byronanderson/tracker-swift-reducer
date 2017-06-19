@@ -62,7 +62,7 @@ struct IterationOverrides {
                     newOverrides = IterationOverrides(iterationOverrides: newList)
                 }
             }
-            if result.type == "project" && (result.start_time != nil || result.iteration_length != nil) { //  || result.week_start_day != nil
+            if result.type == "project" && (result.start_time != nil || result.iteration_length != nil) {
                 newOverrides = IterationOverrides(iterationOverrides: []);
             }
         }

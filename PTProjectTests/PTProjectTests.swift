@@ -39,27 +39,29 @@ class PTProjectTests: XCTestCase {
                 print("fixture: " + fixture)
                 let before = try importFixture(fixture: fixture, name: "before");
                 let action = try importCommand(fixture: fixture)
-                let after = try importFixture(fixture: fixture, name: "after");
-                let actual = PTProject.reduce(project: before, action: action);
+                let expected = try importFixture(fixture: fixture, name: "after");
+                let reduced = PTProject.reduce(project: before, action: action);
 //                print("before");
 //                print(before);
-//                print("after");
-//                print(after);
-//                print("actual");
-//                print(actual);
-                XCTAssert(PTProject.projectName(project: actual) == PTProject.projectName(project: after), fixture);
-                XCTAssert(PTProject.iterationLength(project: actual) == PTProject.iterationLength(project: after), fixture);
-                XCTAssert(PTProject.startTime(project: actual) == PTProject.startTime(project: after), fixture);
-                XCTAssert(PTProject.estimateBugsAndChores(project: actual) == PTProject.estimateBugsAndChores(project: after), fixture);
-                XCTAssert(PTProject.timezone(project: actual) == PTProject.timezone(project: after), fixture);
-                XCTAssert(PTProject.pointScale(project: actual) == PTProject.pointScale(project: after), fixture);
-                XCTAssert(PTProject.labels(project: actual) == PTProject.labels(project: after), fixture);
-                XCTAssert(PTProject.epics(project: actual) == PTProject.epics(project: after), fixture);
-                XCTAssert(storiesSet(project: actual).isSuperset(of: storiesSet(project: after)), fixture);
-                XCTAssert(endsWith(PTProject.storyIds(project: actual), PTProject.storyIds(project: after)), fixture);
-                XCTAssert(supermap(PTProject.tasks(project: actual),  PTProject.tasks(project: after)), fixture);
-                XCTAssert(supermap(PTProject.comments(project: actual),  PTProject.comments(project: after)), fixture);
-                XCTAssert(PTProject.iterationOverrides(project: actual) == PTProject.iterationOverrides(project: after), fixture);
+//                print("expected");
+//                print(expected);
+//                print("reduced");
+//                print(reduced);
+                XCTAssert(PTProject.projectName(project: reduced) == PTProject.projectName(project: expected), fixture);
+                XCTAssert(PTProject.iterationLength(project: reduced) == PTProject.iterationLength(project: expected), fixture);
+                XCTAssert(PTProject.startTime(project: reduced) == PTProject.startTime(project: expected), fixture);
+                XCTAssert(PTProject.estimateBugsAndChores(project: reduced) == PTProject.estimateBugsAndChores(project: expected), fixture);
+                XCTAssert(PTProject.timezone(project: reduced) == PTProject.timezone(project: expected), fixture);
+                XCTAssert(PTProject.pointScale(project: reduced) == PTProject.pointScale(project: expected), fixture);
+                XCTAssert(PTProject.labels(project: reduced) == PTProject.labels(project: expected), fixture);
+                XCTAssert(PTProject.epics(project: reduced) == PTProject.epics(project: expected), fixture);
+                XCTAssert(storiesSet(project: reduced).isSuperset(of: storiesSet(project: expected)), fixture);
+                XCTAssert(endsWith(PTProject.storyIds(project: reduced), PTProject.storyIds(project: expected)), fixture);
+                XCTAssert(supermap(PTProject.tasks(project: reduced),  PTProject.tasks(project: expected)), fixture);
+                XCTAssert(supermap(PTProject.comments(project: reduced),  PTProject.comments(project: expected)), fixture);
+                XCTAssert(PTProject.iterationOverrides(project: reduced) == PTProject.iterationOverrides(project: expected), fixture);
+                XCTAssert(supermap(PTProject.fileAttachments(project: reduced),  PTProject.fileAttachments(project: expected)), fixture);
+                XCTAssert(supermap(PTProject.googleAttachments(project: reduced),  PTProject.googleAttachments(project: expected)), fixture);
             }
         }
     }
@@ -75,14 +77,15 @@ class PTProjectTests: XCTestCase {
         }
     }
     
-    func supermap<T: Hashable>(_ map1: [Int64 : T], _ map2: [Int64 : T]) -> Bool {
-        return map1.reduce(true) { (success, tuple) -> Bool in
-            let map1Value = tuple.value
-            let map2Value = map2[tuple.key]
-            if map2Value == nil {
-                return success
+    func supermap<T: Hashable>(_ bigMap: [Int64 : T], _ littleMap: [Int64 : T]) -> Bool {
+        return littleMap.reduce(true) { (success, tuple) -> Bool in
+            let key = tuple.key
+            let littleMapValue = tuple.value
+            let bigMapValue = bigMap[tuple.key]
+            if littleMapValue != bigMapValue {
+                return false
             }
-            return success && (map1Value == map2Value)
+            return success && (littleMapValue == bigMapValue)
         }
     }
     
@@ -177,7 +180,16 @@ class PTProjectTests: XCTestCase {
                 number: dict.object(forKey: "number") as! Int?,
                 team_strength: dict.object(forKey: "team_strength") as! Double?,
                 length: length,
-                default_length: default_length
+                default_length: default_length,
+                filename: dict.object(forKey: "filename") as! String?,
+                download_url: dict.object(forKey: "download_url") as! String?,
+                thumbnail_url: dict.object(forKey: "thumbnail_url") as! String?,
+                big_url: dict.object(forKey: "big_url") as! String?,
+                uploader_id: dict.object(forKey: "uploader_id") as! Int64?,
+                alternate_link : dict.object(forKey: "alternate_link") as! String?,
+                google_id: dict.object(forKey: "google_id") as! String?,
+                google_kind: dict.object(forKey: "google_kind") as! String?,
+                title: dict.object(forKey: "title") as! String?
             )
         }
         return ProjectAction(type: type, results: results)

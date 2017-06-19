@@ -38,4 +38,13 @@ struct CommandResult {
     let team_strength : Double?
     let length : Int?
     let default_length : Bool?
+    let filename : String?
+    let download_url : String?
+    let thumbnail_url : String?
+    let big_url : String?
+    let uploader_id : Int64?
+    let alternate_link : String?
+    let google_id : String?
+    let google_kind : String?
+    let title : String?
 }

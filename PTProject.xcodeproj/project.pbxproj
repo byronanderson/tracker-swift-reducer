@@ -28,6 +28,10 @@
 		AED434931EF85BA800F953CE /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED434921EF85BA800F953CE /* Comment.swift */; };
 		AED434951EF8676A00F953CE /* IterationOverride.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED434941EF8676A00F953CE /* IterationOverride.swift */; };
 		AED434971EF8680C00F953CE /* IterationOverrides.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED434961EF8680C00F953CE /* IterationOverrides.swift */; };
+		AED434991EF883C800F953CE /* FileAttachments.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED434981EF883C800F953CE /* FileAttachments.swift */; };
+		AED4349B1EF8845000F953CE /* FileAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED4349A1EF8845000F953CE /* FileAttachment.swift */; };
+		AED4349D1EF884D600F953CE /* GoogleAttachments.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED4349C1EF884D600F953CE /* GoogleAttachments.swift */; };
+		AED4349F1EF8853700F953CE /* GoogleAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED4349E1EF8853700F953CE /* GoogleAttachment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +69,10 @@
 		AED434921EF85BA800F953CE /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		AED434941EF8676A00F953CE /* IterationOverride.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IterationOverride.swift; sourceTree = "<group>"; };
 		AED434961EF8680C00F953CE /* IterationOverrides.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IterationOverrides.swift; sourceTree = "<group>"; };
+		AED434981EF883C800F953CE /* FileAttachments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileAttachments.swift; sourceTree = "<group>"; };
+		AED4349A1EF8845000F953CE /* FileAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileAttachment.swift; sourceTree = "<group>"; };
+		AED4349C1EF884D600F953CE /* GoogleAttachments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAttachments.swift; sourceTree = "<group>"; };
+		AED4349E1EF8853700F953CE /* GoogleAttachment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleAttachment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +134,10 @@
 				AED434921EF85BA800F953CE /* Comment.swift */,
 				AED434941EF8676A00F953CE /* IterationOverride.swift */,
 				AED434961EF8680C00F953CE /* IterationOverrides.swift */,
+				AED434981EF883C800F953CE /* FileAttachments.swift */,
+				AED4349A1EF8845000F953CE /* FileAttachment.swift */,
+				AED4349C1EF884D600F953CE /* GoogleAttachments.swift */,
+				AED4349E1EF8853700F953CE /* GoogleAttachment.swift */,
 			);
 			path = PTProject;
 			sourceTree = "<group>";
@@ -258,14 +270,18 @@
 				AEC92D381EF3211700CEDF77 /* Epics.swift in Sources */,
 				AEC92D2E1EF2EC3A00CEDF77 /* CommandResult.swift in Sources */,
 				AEC92D3E1EF34CDD00CEDF77 /* Stories.swift in Sources */,
+				AED4349F1EF8853700F953CE /* GoogleAttachment.swift in Sources */,
 				AED434971EF8680C00F953CE /* IterationOverrides.swift in Sources */,
+				AED4349D1EF884D600F953CE /* GoogleAttachments.swift in Sources */,
 				AEC92D341EF3188900CEDF77 /* Labels.swift in Sources */,
 				AE29E38F1EEF4450003AC57D /* PTProject.swift in Sources */,
+				AED434991EF883C800F953CE /* FileAttachments.swift in Sources */,
 				AEC92D321EF3172700CEDF77 /* Label.swift in Sources */,
 				AED434951EF8676A00F953CE /* IterationOverride.swift in Sources */,
 				AE8993081EF4EC4D0069FB30 /* Tasks.swift in Sources */,
 				AED434931EF85BA800F953CE /* Comment.swift in Sources */,
 				AED434911EF85B5200F953CE /* Comments.swift in Sources */,
+				AED4349B1EF8845000F953CE /* FileAttachment.swift in Sources */,
 				AE29E3911EEF482D003AC57D /* ProjectAction.swift in Sources */,
 				AE89930A1EF4ED200069FB30 /* Task.swift in Sources */,
 				AEC92D3C1EF34C5700CEDF77 /* Story.swift in Sources */,
