@@ -24,14 +24,18 @@ struct Stories {
             let taskIds = taskObjects.map({ (task) -> Int64 in
                 return task.object(forKey: "id") as! Int64
             })
-            stories[id] = Story(id: id, name: name, description: description, storyType: storyType, currentState: currentState, estimate: estimate, taskIds: taskIds)
+            let commentObjects = dict.object(forKey: "comments") as! [NSDictionary]
+            let commentIds = commentObjects.map({ (task) -> Int64 in
+                return task.object(forKey: "id") as! Int64
+            })
+            stories[id] = Story(id: id, name: name, description: description, storyType: storyType, currentState: currentState, estimate: estimate, taskIds: taskIds, commentIds: commentIds)
         }
         return Stories(stories: stories)
     }
     
     static func reduce(stories: Stories, action: ProjectAction) -> Stories {
         var newStories = stories;
-        action.results.forEach { (result) in
+        sortResults(action.results).forEach { (result) in
             if (result.type == "story") {
                 var newList = newStories.stories;
                 if (result.deleted == true) {
@@ -41,7 +45,7 @@ struct Stories {
                     let existing = newList[result.id!]
                     var newStory : NSMutableDictionary;
                     if (existing == nil) {
-                        newStory = ["id": result.id!, "name": "", "storyType": "feature", "currentState": "unscheduled", "description": "", "taskIds": []]
+                        newStory = ["id": result.id!, "name": "", "storyType": "feature", "currentState": "unscheduled", "description": "", "taskIds": [], "commentIds": []]
                     } else {
                         newStory = serialize(story: existing!)
                     }
@@ -97,6 +101,33 @@ struct Stories {
                     }
                 }
             }
+            if result.type == "comment" {
+                if result.deleted == true {
+                    let storyWithComment = findStoryWithCommentId(newStories.stories, result.id!)
+                    if storyWithComment != nil {
+                        var attrs = serialize(story: storyWithComment!)
+                        attrs["commentIds"] = storyWithComment!.commentIds.filter({ (id) -> Bool in
+                            return id != result.id!
+                        })
+                        var newList = newStories.stories
+                        newList[storyWithComment!.id] = deserialize(dict: attrs)
+                        newStories = Stories(stories: newList)
+                    }
+                } else {
+                    let existing = result.story_id == nil ? findStoryWithCommentId(newStories.stories, result.id!) : newStories.stories[result.story_id!]
+                    if (existing != nil) {
+                        let attrs = serialize(story: existing!)
+                        var commentIds = existing!.commentIds.filter({ (id) -> Bool in
+                            return result.id! != id
+                        })
+                        commentIds.append(result.id!)
+                        attrs["commentIds"] = commentIds
+                        var newList = newStories.stories
+                        newList[existing!.id] = deserialize(dict: attrs)
+                        newStories = Stories(stories: newList)
+                    }
+                }
+            }
         }
         return newStories
     }
@@ -112,7 +143,8 @@ struct Stories {
             "currentState": story.currentState,
             "storyType": story.storyType,
             "estimate": story.estimate as Any,
-            "taskIds": story.taskIds
+            "taskIds": story.taskIds,
+            "commentIds": story.commentIds
         ];
     }
     
@@ -124,17 +156,42 @@ struct Stories {
             storyType: dict.object(forKey: "storyType") as! String,
             currentState: dict.object(forKey: "currentState") as! String,
             estimate: nullToNil(dict.object(forKey: "estimate")) as! Int?,
-            taskIds: dict.object(forKey: "taskIds") as! [Int64]
+            taskIds: dict.object(forKey: "taskIds") as! [Int64],
+            commentIds: dict.object(forKey: "commentIds") as! [Int64]
         )
     }
     
-    static func findStoryWithTaskId(_ stories: [Int64 : Story], _ taskId: Int64) -> Story? {
+    private static func findStoryWithTaskId(_ stories: [Int64 : Story], _ taskId: Int64) -> Story? {
         return stories.values.first(where: { (story) -> Bool in
             return story.taskIds.contains(taskId)
         })
     }
     
-    static func nullToNil(_ value : Any?) -> Any? {
+    private static func findStoryWithCommentId(_ stories: [Int64 : Story], _ commentId: Int64) -> Story? {
+        return stories.values.first(where: { (story) -> Bool in
+            return story.commentIds.contains(commentId)
+        })
+    }
+    
+    private static func sortResults(_ results : [CommandResult]) -> [CommandResult] {
+        return results.sorted(by: { (one, two) -> Bool in
+            return categorize(one) - categorize(two) > 0;
+        })
+    }
+    
+    private static func categorize(_ result : CommandResult) -> Int {
+        if result.type == "story" {
+            return 2
+        } else if result.type == "task" {
+            return 1
+        } else if result.type == "comment" {
+            return 1
+        } else {
+            return 0
+        }
+    }
+    
+    private static func nullToNil(_ value : Any?) -> Any? {
         if value is NSNull {
             return nil
         } else {

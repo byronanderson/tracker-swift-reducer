@@ -29,4 +29,5 @@ struct CommandResult {
     let complete : Bool?
     let story_id : Int64?
     let position : Int?
+    let epic_id: Int64?
 }

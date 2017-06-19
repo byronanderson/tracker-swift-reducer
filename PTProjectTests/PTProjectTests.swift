@@ -133,6 +133,7 @@ class PTProjectTests: XCTestCase {
             let complete = dict.object(forKey: "complete") as! Bool?
             let story_id = dict.object(forKey: "story_id") as! Int64?
             let position = dict.object(forKey: "position") as! Int?
+            let epic_id = dict.object(forKey: "epic_id") as! Int64?
             return CommandResult(
                 id: id,
                 deleted: deleted,
@@ -153,7 +154,8 @@ class PTProjectTests: XCTestCase {
                 moved: moved,
                 complete: complete,
                 story_id: story_id,
-                position: position
+                position: position,
+                epic_id: epic_id
             )
         }
         return ProjectAction(type: type, results: results)

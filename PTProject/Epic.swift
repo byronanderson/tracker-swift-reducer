@@ -13,6 +13,7 @@ struct Epic : Hashable {
     let labelId : Int64
     let name : String
     let description : String
+    let commentIds : [Int64]
     
     var hashValue: Int {
         return id.hashValue;
@@ -20,5 +21,5 @@ struct Epic : Hashable {
 }
 
 func ==(lhs: Epic, rhs: Epic) -> Bool {
-    return lhs.id == rhs.id && lhs.name == rhs.name && lhs.labelId == rhs.labelId && lhs.description == rhs.description;
+    return lhs.id == rhs.id && lhs.name == rhs.name && lhs.labelId == rhs.labelId && lhs.description == rhs.description && lhs.commentIds == rhs.commentIds;
 }
