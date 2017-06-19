@@ -20,7 +20,11 @@ struct Stories {
             let currentState = dict.object(forKey: "current_state") as! String
             let description = dict.object(forKey: "description") as! String? ?? ""
             let estimate = dict.object(forKey: "estimate") as! Int?
-            stories[id] = Story(id: id, name: name, description: description, storyType: storyType, currentState: currentState, estimate: estimate)
+            let taskObjects = dict.object(forKey: "tasks") as! [NSDictionary]
+            let taskIds = taskObjects.map({ (task) -> Int64 in
+                return task.object(forKey: "id") as! Int64
+            })
+            stories[id] = Story(id: id, name: name, description: description, storyType: storyType, currentState: currentState, estimate: estimate, taskIds: taskIds)
         }
         return Stories(stories: stories)
     }
@@ -37,7 +41,7 @@ struct Stories {
                     let existing = newList[result.id!]
                     var newStory : NSMutableDictionary;
                     if (existing == nil) {
-                        newStory = ["id": result.id!, "name": "", "storyType": "feature", "currentState": "unscheduled", "description": ""]
+                        newStory = ["id": result.id!, "name": "", "storyType": "feature", "currentState": "unscheduled", "description": "", "taskIds": []]
                     } else {
                         newStory = serialize(story: existing!)
                     }
@@ -65,9 +69,40 @@ struct Stories {
                     newStories = Stories(stories: newList)
                 }
             }
+            if result.type == "task" {
+                if result.deleted == true {
+                    let storyWithTask = findStoryWithTaskId(newStories.stories, result.id!)
+                    if storyWithTask != nil {
+                        var attrs = serialize(story: storyWithTask!)
+                        attrs["taskIds"] = storyWithTask!.taskIds.filter({ (id) -> Bool in
+                            return id != result.id!
+                        })
+                        var newList = newStories.stories
+                        newList[storyWithTask!.id] = deserialize(dict: attrs)
+                        newStories = Stories(stories: newList)
+                    }
+                } else {
+                    let existing = result.story_id == nil ? findStoryWithTaskId(newStories.stories, result.id!) : newStories.stories[result.story_id!]
+                    if (existing != nil && result.position != nil) {
+                        let attrs = serialize(story: existing!)
+                        var taskIds = existing!.taskIds.filter({ (id) -> Bool in
+                            return result.id! != id
+                        })
+                        let index = taskIds.count > result.position! ? result.position! - 1 : taskIds.count
+                        taskIds.insert(result.id!, at: index)
+                        attrs["taskIds"] = taskIds
+                        var newList = newStories.stories
+                        newList[existing!.id] = deserialize(dict: attrs)
+                        newStories = Stories(stories: newList)
+                    }
+                }
+            }
         }
         return newStories
     }
+    
+    
+    
     
     static func serialize(story: Story) -> NSMutableDictionary {
         return [
@@ -76,7 +111,8 @@ struct Stories {
             "name": story.name,
             "currentState": story.currentState,
             "storyType": story.storyType,
-            "estimate": story.estimate as Any
+            "estimate": story.estimate as Any,
+            "taskIds": story.taskIds
         ];
     }
     
@@ -87,8 +123,15 @@ struct Stories {
             description: dict.object(forKey: "description") as! String,
             storyType: dict.object(forKey: "storyType") as! String,
             currentState: dict.object(forKey: "currentState") as! String,
-            estimate: nullToNil(dict.object(forKey: "estimate")) as! Int?
+            estimate: nullToNil(dict.object(forKey: "estimate")) as! Int?,
+            taskIds: dict.object(forKey: "taskIds") as! [Int64]
         )
+    }
+    
+    static func findStoryWithTaskId(_ stories: [Int64 : Story], _ taskId: Int64) -> Story? {
+        return stories.values.first(where: { (story) -> Bool in
+            return story.taskIds.contains(taskId)
+        })
     }
     
     static func nullToNil(_ value : Any?) -> Any? {

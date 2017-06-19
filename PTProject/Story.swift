@@ -15,6 +15,7 @@ struct Story : Hashable {
     let storyType : String
     let currentState : String
     let estimate : Int?
+    let taskIds : [Int64]
     
     var hashValue: Int {
         return id.hashValue;
@@ -22,5 +23,5 @@ struct Story : Hashable {
 }
 
 func ==(lhs: Story, rhs: Story) -> Bool {
-    return lhs.id == rhs.id && lhs.name == rhs.name && lhs.description == rhs.description;
+    return lhs.id == rhs.id && lhs.name == rhs.name && lhs.description == rhs.description && lhs.storyType == rhs.storyType && lhs.currentState == rhs.currentState && lhs.estimate == rhs.estimate && lhs.taskIds == rhs.taskIds;
 }
