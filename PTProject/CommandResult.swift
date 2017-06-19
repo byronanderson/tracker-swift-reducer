@@ -30,4 +30,8 @@ struct CommandResult {
     let story_id : Int64?
     let position : Int?
     let epic_id: Int64?
+    let text : String?
+    let person_id : Int64?
+    let file_attachment_ids : [Int64]?
+    let google_attachment_ids : [Int64]?
 }

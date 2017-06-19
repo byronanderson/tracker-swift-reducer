@@ -24,6 +24,8 @@
 		AEC92D3A1EF32D8400CEDF77 /* EpicIds.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC92D391EF32D8400CEDF77 /* EpicIds.swift */; };
 		AEC92D3C1EF34C5700CEDF77 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC92D3B1EF34C5700CEDF77 /* Story.swift */; };
 		AEC92D3E1EF34CDD00CEDF77 /* Stories.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC92D3D1EF34CDD00CEDF77 /* Stories.swift */; };
+		AED434911EF85B5200F953CE /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED434901EF85B5200F953CE /* Comments.swift */; };
+		AED434931EF85BA800F953CE /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED434921EF85BA800F953CE /* Comment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		AEC92D391EF32D8400CEDF77 /* EpicIds.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpicIds.swift; sourceTree = "<group>"; };
 		AEC92D3B1EF34C5700CEDF77 /* Story.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		AEC92D3D1EF34CDD00CEDF77 /* Stories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stories.swift; sourceTree = "<group>"; };
+		AED434901EF85B5200F953CE /* Comments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
+		AED434921EF85BA800F953CE /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +118,8 @@
 				AE8993051EF3A1660069FB30 /* StoryIds.swift */,
 				AE8993071EF4EC4D0069FB30 /* Tasks.swift */,
 				AE8993091EF4ED200069FB30 /* Task.swift */,
+				AED434901EF85B5200F953CE /* Comments.swift */,
+				AED434921EF85BA800F953CE /* Comment.swift */,
 			);
 			path = PTProject;
 			sourceTree = "<group>";
@@ -250,6 +256,8 @@
 				AE29E38F1EEF4450003AC57D /* PTProject.swift in Sources */,
 				AEC92D321EF3172700CEDF77 /* Label.swift in Sources */,
 				AE8993081EF4EC4D0069FB30 /* Tasks.swift in Sources */,
+				AED434931EF85BA800F953CE /* Comment.swift in Sources */,
+				AED434911EF85B5200F953CE /* Comments.swift in Sources */,
 				AE29E3911EEF482D003AC57D /* ProjectAction.swift in Sources */,
 				AE89930A1EF4ED200069FB30 /* Task.swift in Sources */,
 				AEC92D3C1EF34C5700CEDF77 /* Story.swift in Sources */,

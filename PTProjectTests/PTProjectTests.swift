@@ -58,6 +58,7 @@ class PTProjectTests: XCTestCase {
                 XCTAssert(storiesSet(project: actual).isSuperset(of: storiesSet(project: after)), fixture);
                 XCTAssert(endsWith(PTProject.storyIds(project: actual), PTProject.storyIds(project: after)), fixture);
                 XCTAssert(supermap(PTProject.tasks(project: actual),  PTProject.tasks(project: after)), fixture);
+                XCTAssert(supermap(PTProject.comments(project: actual),  PTProject.comments(project: after)), fixture);
             }
         }
     }
@@ -134,6 +135,8 @@ class PTProjectTests: XCTestCase {
             let story_id = dict.object(forKey: "story_id") as! Int64?
             let position = dict.object(forKey: "position") as! Int?
             let epic_id = dict.object(forKey: "epic_id") as! Int64?
+            let text = dict.object(forKey: "text") as! String?
+            let person_id = dict.object(forKey: "person_id") as! Int64?
             return CommandResult(
                 id: id,
                 deleted: deleted,
@@ -155,7 +158,11 @@ class PTProjectTests: XCTestCase {
                 complete: complete,
                 story_id: story_id,
                 position: position,
-                epic_id: epic_id
+                epic_id: epic_id,
+                text: text,
+                person_id: person_id,
+                file_attachment_ids: dict.object(forKey: "file_attachment_ids") as! [Int64]?,
+                google_attachment_ids: dict.object(forKey: "google_attachment_ids") as! [Int64]?
             )
         }
         return ProjectAction(type: type, results: results)
