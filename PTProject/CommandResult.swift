@@ -47,4 +47,7 @@ struct CommandResult {
     let google_id : String?
     let google_kind : String?
     let title : String?
+    let role : String?
+    let username : String?
+    let initials : String?
 }

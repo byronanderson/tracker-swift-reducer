@@ -62,6 +62,7 @@ class PTProjectTests: XCTestCase {
                 XCTAssert(PTProject.iterationOverrides(project: reduced) == PTProject.iterationOverrides(project: expected), fixture);
                 XCTAssert(supermap(PTProject.fileAttachments(project: reduced),  PTProject.fileAttachments(project: expected)), fixture);
                 XCTAssert(supermap(PTProject.googleAttachments(project: reduced),  PTProject.googleAttachments(project: expected)), fixture);
+                XCTAssert(PTProject.activeMemberships(project: reduced).isSuperset(of: PTProject.activeMemberships(project: expected)), fixture);
             }
         }
     }
@@ -189,7 +190,10 @@ class PTProjectTests: XCTestCase {
                 alternate_link : dict.object(forKey: "alternate_link") as! String?,
                 google_id: dict.object(forKey: "google_id") as! String?,
                 google_kind: dict.object(forKey: "google_kind") as! String?,
-                title: dict.object(forKey: "title") as! String?
+                title: dict.object(forKey: "title") as! String?,
+                role: dict.object(forKey: "role") as! String?,
+                username: dict.object(forKey: "username") as! String?,
+                initials: dict.object(forKey: "initials") as! String?
             )
         }
         return ProjectAction(type: type, results: results)

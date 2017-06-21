@@ -20,6 +20,7 @@ struct PTProject {
     let iterationOverrides : IterationOverrides
     let fileAttachments : FileAttachments
     let googleAttachments : GoogleAttachments
+    let memberships : ProjectMemberships
     
     static func reduce(project: PTProject, action: ProjectAction) -> PTProject {
         return PTProject(
@@ -33,7 +34,8 @@ struct PTProject {
             comments: Comments.reduce(comments: project.comments, action: action),
             iterationOverrides: IterationOverrides.reduce(iterationOverrides: project.iterationOverrides, action: action),
             fileAttachments: FileAttachments.reduce(fileAttachments: project.fileAttachments, action: action),
-            googleAttachments: GoogleAttachments.reduce(googleAttachments: project.googleAttachments, action: action)
+            googleAttachments: GoogleAttachments.reduce(googleAttachments: project.googleAttachments, action: action),
+            memberships: ProjectMemberships.reduce(memberships: project.memberships, action: action)
         );
     }
     
@@ -49,7 +51,8 @@ struct PTProject {
             comments: Comments.fromJSON(json: json),
             iterationOverrides: IterationOverrides.fromJSON(json: json),
             fileAttachments: FileAttachments.fromJSON(json: json),
-            googleAttachments: GoogleAttachments.fromJSON(json: json)
+            googleAttachments: GoogleAttachments.fromJSON(json: json),
+            memberships: ProjectMemberships.fromJSON(json: json)
         );
     }
     
@@ -114,5 +117,9 @@ struct PTProject {
     
     static func googleAttachments(project: PTProject) -> [Int64 : GoogleAttachment] {
         return GoogleAttachments.googleAttachments(googleAttachments: project.googleAttachments)
+    }
+    
+    static func activeMemberships(project: PTProject) -> Set<ProjectMembership> {
+        return Set<ProjectMembership>(ProjectMemberships.activeMemberships(memberships: project.memberships))
     }
 }

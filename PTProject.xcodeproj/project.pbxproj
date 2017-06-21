@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AE2764331EF8DC240094CD51 /* ProjectMemberships.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2764321EF8DC240094CD51 /* ProjectMemberships.swift */; };
+		AE2764351EF8DC3A0094CD51 /* ProjectMembership.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2764341EF8DC3A0094CD51 /* ProjectMembership.swift */; };
 		AE29E37E1EEF3613003AC57D /* PTProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE29E3741EEF3613003AC57D /* PTProject.framework */; };
 		AE29E3831EEF3613003AC57D /* PTProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE29E3821EEF3613003AC57D /* PTProjectTests.swift */; };
 		AE29E38F1EEF4450003AC57D /* PTProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE29E38E1EEF4450003AC57D /* PTProject.swift */; };
@@ -45,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AE2764321EF8DC240094CD51 /* ProjectMemberships.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectMemberships.swift; sourceTree = "<group>"; };
+		AE2764341EF8DC3A0094CD51 /* ProjectMembership.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectMembership.swift; sourceTree = "<group>"; };
 		AE29E3741EEF3613003AC57D /* PTProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PTProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE29E3781EEF3613003AC57D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE29E37D1EEF3613003AC57D /* PTProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PTProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +142,8 @@
 				AED4349A1EF8845000F953CE /* FileAttachment.swift */,
 				AED4349C1EF884D600F953CE /* GoogleAttachments.swift */,
 				AED4349E1EF8853700F953CE /* GoogleAttachment.swift */,
+				AE2764321EF8DC240094CD51 /* ProjectMemberships.swift */,
+				AE2764341EF8DC3A0094CD51 /* ProjectMembership.swift */,
 			);
 			path = PTProject;
 			sourceTree = "<group>";
@@ -270,11 +276,13 @@
 				AEC92D381EF3211700CEDF77 /* Epics.swift in Sources */,
 				AEC92D2E1EF2EC3A00CEDF77 /* CommandResult.swift in Sources */,
 				AEC92D3E1EF34CDD00CEDF77 /* Stories.swift in Sources */,
+				AE2764331EF8DC240094CD51 /* ProjectMemberships.swift in Sources */,
 				AED4349F1EF8853700F953CE /* GoogleAttachment.swift in Sources */,
 				AED434971EF8680C00F953CE /* IterationOverrides.swift in Sources */,
 				AED4349D1EF884D600F953CE /* GoogleAttachments.swift in Sources */,
 				AEC92D341EF3188900CEDF77 /* Labels.swift in Sources */,
 				AE29E38F1EEF4450003AC57D /* PTProject.swift in Sources */,
+				AE2764351EF8DC3A0094CD51 /* ProjectMembership.swift in Sources */,
 				AED434991EF883C800F953CE /* FileAttachments.swift in Sources */,
 				AEC92D321EF3172700CEDF77 /* Label.swift in Sources */,
 				AED434951EF8676A00F953CE /* IterationOverride.swift in Sources */,
