@@ -101,11 +101,11 @@ class PTProjectTests: XCTestCase {
         return Array(list1[startIndex...(list1.count - 1)]) == list2
     }
     
-    func storiesSet(project: Project) -> Set<Story> {
+    func storiesSet(project: PTProject) -> Set<Story> {
         return Set<Story>(PTProject.storiesById(project: project).values);
     }
     
-    func importFixture(fixture: String, name: String) throws -> Project {
+    func importFixture(fixture: String, name: String) throws -> PTProject {
         let data = try readFile(path: "fixtures/" + fixture + "/" + name, withExtension: "json");
         let json = try JSONSerialization.jsonObject(with: data, options: []) as! NSDictionary
         return PTProject.fromJSON(json);

@@ -36,8 +36,8 @@ struct Tasks {
                 } else {
                     var newList = newTasks.tasks
                     let attributes = findOrInitialize(tasks, result.id!)
-                    if (result.description != nil) {
-                        attributes["description"] = result.description!
+                    if (result.desc != nil) {
+                        attributes["description"] = result.desc!
                     }
                     if (result.complete != nil) {
                         attributes["complete"] = result.complete!

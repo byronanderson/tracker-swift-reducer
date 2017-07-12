@@ -60,8 +60,8 @@ struct Stories {
                             newStory["estimate"] = result.estimate!
                         }
                     }
-                    if (result.description != nil) {
-                        newStory["description"] = result.description!
+                    if (result.desc != nil) {
+                        newStory["description"] = result.desc!
                     }
                     if (result.story_type != nil) {
                         newStory["storyType"] = result.story_type!

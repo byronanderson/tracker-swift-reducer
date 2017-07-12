@@ -49,8 +49,8 @@ struct Epics {
                     if (result.name != nil) {
                         epicDetails["name"] = result.name! as String
                     }
-                    if (result.description != nil) {
-                        epicDetails["description"] = result.description! as String
+                    if (result.desc != nil) {
+                        epicDetails["description"] = result.desc! as String
                     }
                     var newMap = newEpics.epics
                     newMap[result.id!] = deserialize(dict: epicDetails)

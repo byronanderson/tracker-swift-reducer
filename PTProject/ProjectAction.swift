@@ -8,7 +8,12 @@
 
 import Foundation
 
-struct ProjectAction {
+@objc class ProjectAction : NSObject {
     let type : String
     let results : [CommandResult]
+    
+    @objc init(type: String, results: [CommandResult]) {
+        self.type = type
+        self.results = results
+    }
 }
