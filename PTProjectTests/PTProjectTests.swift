@@ -37,10 +37,10 @@ class PTProjectTests: XCTestCase {
                 
             } else {
                 print("fixture: " + fixture)
-                let before = try importFixture(fixture: fixture, name: "before");
+                let before = try importFixture(fixture: fixture, name: "before")
                 let action = try importCommand(fixture: fixture)
-                let expected = try importFixture(fixture: fixture, name: "after");
-                let reduced = PTProject.reduce(project: before, action: action);
+                let expected = try importFixture(fixture: fixture, name: "after")
+                let reduced = PTProject.reduce(before, action)
 //                print("before");
 //                print(before);
 //                print("expected");
@@ -101,14 +101,14 @@ class PTProjectTests: XCTestCase {
         return Array(list1[startIndex...(list1.count - 1)]) == list2
     }
     
-    func storiesSet(project: PTProject) -> Set<Story> {
+    func storiesSet(project: Project) -> Set<Story> {
         return Set<Story>(PTProject.storiesById(project: project).values);
     }
     
-    func importFixture(fixture: String, name: String) throws -> PTProject {
+    func importFixture(fixture: String, name: String) throws -> Project {
         let data = try readFile(path: "fixtures/" + fixture + "/" + name, withExtension: "json");
         let json = try JSONSerialization.jsonObject(with: data, options: []) as! NSDictionary
-        return PTProject.fromJSON(json: json);
+        return PTProject.fromJSON(json);
     }
     
     func importCommand(fixture: String) throws -> ProjectAction {
