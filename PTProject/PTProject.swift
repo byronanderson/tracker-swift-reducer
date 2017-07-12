@@ -9,6 +9,10 @@
 import Foundation
 
 @objc class PTProject : NSObject {
+    let foo : String
+    override init() {
+        self.foo = "bar"
+    }
     static func fromJSON(_ json : NSDictionary) -> Project {
         return Project.fromJSON(json: json)
     }
