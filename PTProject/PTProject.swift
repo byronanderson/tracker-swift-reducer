@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc class PTProject : NSObject {
+@objc public class PTProject : NSObject {
     let foo : String
     override init() {
         self.foo = "bar"
