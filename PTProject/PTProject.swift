@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc class PTProject : NSObject {
+@objc public class PTProject : NSObject {
     let metadata : ProjectMetadata
     let labels : Labels
     let epics : Epics
@@ -37,7 +37,7 @@ import Foundation
         self.memberships = memberships
     }
     
-    @objc static func reduce(_ project: PTProject, _ action: ProjectAction) -> PTProject {
+    @objc public static func reduce(_ project: PTProject, _ action: ProjectAction) -> PTProject {
         return PTProject(
             metadata: ProjectMetadata.reduce(project: project.metadata, action: action),
             labels: Labels.reduce(labels: project.labels, action: action),
@@ -54,7 +54,7 @@ import Foundation
         );
     }
     
-    static func fromJSON(_ json: NSDictionary) -> PTProject {
+    @objc public static func fromJSON(_ json: NSDictionary) -> PTProject {
         return PTProject(
             metadata: ProjectMetadata.fromJSON(json: json),
             labels: Labels.fromJSON(json: json),

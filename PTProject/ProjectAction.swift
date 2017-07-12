@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc class ProjectAction : NSObject {
+@objc public class ProjectAction : NSObject {
     let type : String
     let results : [CommandResult]
     
