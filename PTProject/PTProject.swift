@@ -8,88 +8,7 @@
 
 import Foundation
 
-@objc public class PTProject : NSObject {
-    let foo : String
-    override init() {
-        self.foo = "bar"
-    }
-    static func fromJSON(_ json : NSDictionary) -> Project {
-        return Project.fromJSON(json: json)
-    }
-    
-    static func reduce(_ project : Project, _ action : ProjectAction) -> Project {
-        return Project.reduce(project:project, action:action)
-    }
-    
-    static func projectName(project: Project) -> String {
-        return ProjectMetadata.projectName(project: project.metadata)
-    }
-    
-    static func iterationLength(project: Project) -> Int {
-        return ProjectMetadata.iterationLength(project: project.metadata)
-    }
-    
-    static func startTime(project: Project) -> Int64 {
-        return ProjectMetadata.startTime(project: project.metadata)
-    }
-    
-    static func estimateBugsAndChores(project: Project) -> Bool {
-        return ProjectMetadata.estimateBugsAndChores(project: project.metadata)
-    }
-    
-    static func timezone(project: Project) -> String {
-        return ProjectMetadata.timezone(project: project.metadata)
-    }
-    
-    static func pointScale(project: Project) -> [Int] {
-        return ProjectMetadata.pointScale(project: project.metadata)
-    }
-    
-    static func labels(project: Project) -> Set<Label> {
-        return Labels.labels(labels: project.labels)
-    }
-    
-    static func epics(project: Project) -> [Epic] {
-        let epicsById = Epics.epicsById(epics: project.epics)
-        return EpicIds.epicIds(epicIds: project.epicIds).map({ (id) -> Epic in
-            return epicsById[id]!
-        })
-    }
-    
-    static func storiesById(project: Project) -> [Int64 : Story] {
-        return Stories.storiesById(stories: project.stories)
-    }
-    
-    static func storyIds(project: Project) -> [Int64] {
-        return StoryIds.storyIds(storyIds: project.storyIds)
-    }
-    
-    static func tasks(project: Project) -> [Int64 : Task] {
-        return Tasks.tasksById(tasks: project.tasks)
-    }
-    
-    static func comments(project: Project) -> [Int64 : Comment] {
-        return Comments.commentsById(comments: project.comments)
-    }
-    
-    static func iterationOverrides(project: Project) -> [IterationOverride] {
-        return IterationOverrides.iterationOverrides(iterationOverrides: project.iterationOverrides)
-    }
-    
-    static func fileAttachments(project: Project) -> [Int64 : FileAttachment] {
-        return FileAttachments.fileAttachments(fileAttachments: project.fileAttachments)
-    }
-    
-    static func googleAttachments(project: Project) -> [Int64 : GoogleAttachment] {
-        return GoogleAttachments.googleAttachments(googleAttachments: project.googleAttachments)
-    }
-    
-    static func activeMemberships(project: Project) -> Set<ProjectMembership> {
-        return Set<ProjectMembership>(ProjectMemberships.activeMemberships(memberships: project.memberships))
-    }
-}
-
-struct Project {
+@objc class PTProject : NSObject {
     let metadata : ProjectMetadata
     let labels : Labels
     let epics : Epics
@@ -103,8 +22,23 @@ struct Project {
     let googleAttachments : GoogleAttachments
     let memberships : ProjectMemberships
     
-    static func reduce(project: Project, action: ProjectAction) -> Project {
-        return Project(
+    init(metadata: ProjectMetadata, labels: Labels, epics: Epics, epicIds: EpicIds, stories: Stories, storyIds: StoryIds, tasks: Tasks, comments: Comments, iterationOverrides: IterationOverrides, fileAttachments: FileAttachments, googleAttachments: GoogleAttachments, memberships: ProjectMemberships) {
+        self.metadata = metadata
+        self.labels = labels
+        self.epics = epics
+        self.epicIds = epicIds
+        self.stories = stories
+        self.storyIds = storyIds
+        self.tasks = tasks
+        self.comments = comments
+        self.iterationOverrides = iterationOverrides
+        self.fileAttachments = fileAttachments
+        self.googleAttachments = googleAttachments
+        self.memberships = memberships
+    }
+    
+    static func reduce(project: PTProject, action: ProjectAction) -> PTProject {
+        return PTProject(
             metadata: ProjectMetadata.reduce(project: project.metadata, action: action),
             labels: Labels.reduce(labels: project.labels, action: action),
             epics: Epics.reduce(epics: project.epics, action: action),
@@ -120,8 +54,8 @@ struct Project {
         );
     }
     
-    static func fromJSON(json: NSDictionary) -> Project {
-        return Project(
+    static func fromJSON(json: NSDictionary) -> PTProject {
+        return PTProject(
             metadata: ProjectMetadata.fromJSON(json: json),
             labels: Labels.fromJSON(json: json),
             epics: Epics.fromJSON(json: json),
@@ -135,5 +69,72 @@ struct Project {
             googleAttachments: GoogleAttachments.fromJSON(json: json),
             memberships: ProjectMemberships.fromJSON(json: json)
         );
+    }
+    
+    static func projectName(project: PTProject) -> String {
+        return ProjectMetadata.projectName(project: project.metadata)
+    }
+    
+    static func iterationLength(project: PTProject) -> Int {
+        return ProjectMetadata.iterationLength(project: project.metadata)
+    }
+    
+    static func startTime(project: PTProject) -> Int64 {
+        return ProjectMetadata.startTime(project: project.metadata)
+    }
+    
+    static func estimateBugsAndChores(project: PTProject) -> Bool {
+        return ProjectMetadata.estimateBugsAndChores(project: project.metadata)
+    }
+    
+    static func timezone(project: PTProject) -> String {
+        return ProjectMetadata.timezone(project: project.metadata)
+    }
+    
+    static func pointScale(project: PTProject) -> [Int] {
+        return ProjectMetadata.pointScale(project: project.metadata)
+    }
+    
+    static func labels(project: PTProject) -> Set<Label> {
+        return Labels.labels(labels: project.labels)
+    }
+    
+    static func epics(project: PTProject) -> [Epic] {
+        let epicsById = Epics.epicsById(epics: project.epics)
+        return EpicIds.epicIds(epicIds: project.epicIds).map({ (id) -> Epic in
+            return epicsById[id]!
+        })
+    }
+    
+    static func storiesById(project: PTProject) -> [Int64 : Story] {
+        return Stories.storiesById(stories: project.stories)
+    }
+    
+    static func storyIds(project: PTProject) -> [Int64] {
+        return StoryIds.storyIds(storyIds: project.storyIds)
+    }
+    
+    static func tasks(project: PTProject) -> [Int64 : Task] {
+        return Tasks.tasksById(tasks: project.tasks)
+    }
+    
+    static func comments(project: PTProject) -> [Int64 : Comment] {
+        return Comments.commentsById(comments: project.comments)
+    }
+    
+    static func iterationOverrides(project: PTProject) -> [IterationOverride] {
+        return IterationOverrides.iterationOverrides(iterationOverrides: project.iterationOverrides)
+    }
+    
+    static func fileAttachments(project: PTProject) -> [Int64 : FileAttachment] {
+        return FileAttachments.fileAttachments(fileAttachments: project.fileAttachments)
+    }
+    
+    static func googleAttachments(project: PTProject) -> [Int64 : GoogleAttachment] {
+        return GoogleAttachments.googleAttachments(googleAttachments: project.googleAttachments)
+    }
+    
+    static func activeMemberships(project: PTProject) -> Set<ProjectMembership> {
+        return Set<ProjectMembership>(ProjectMemberships.activeMemberships(memberships: project.memberships))
     }
 }
